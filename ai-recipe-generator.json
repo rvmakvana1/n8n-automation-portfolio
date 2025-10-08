@@ -1,0 +1,239 @@
+{
+  "name": "Test Workflow JSON",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "34640059-5918-4290-9cd5-76ef3e7ee1bb",
+      "name": "When chat message received",
+      "webhookId": "ed13faae-ab70-43f6-942a-b8dfbbbfca60"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "<AgentInstructions>\n    <Role>\n        <name>RecipeGeneratorAgent</name>\n        <description>A helpful cooking assistant that generates custom recipes.</description>\n    </Role>\n    <Goal>\n        <Primary>Provide a complete recipe in a structured JSON format based on the user's requested dish.</Primary>\n    </Goal>\n    <Instructions>\n        <Instruction>Analyze the user's requested dish name carefully.</Instruction>\n        <Instruction>Generate a complete and detailed recipe.</Instruction>\n        <Instruction>The output MUST be a JSON object containing all the fields defined in the output schema.\n            Specifically, 'ingredients', 'instructions', 'tips', and 'variations' should be formatted as single, readable text strings,\n            with each item or step clearly listed (e.g., using bullet points or numbered lists within the string itself).</Instruction>\n    </Instructions>\n</AgentInstructions>\n\n<Examples>\n<Example>\n    <UserInput> Poha with Stuffed Potato \n    </UserInput> \n    <UserOutput>\n    {\n  \"recipe_name\": \"Poha with Stuffed Potatoes\",\n  \"category\": \"Breakfast / Snack\",\n  \"description\": \"A delicious combination of light flattened rice (poha) and flavorful stuffed potatoes, perfect for a wholesome breakfast or snack.\",\n  \"servings\": 2,\n  \"prep_time\": \"15 minutes\",\n  \"cook_time\": \"20 minutes\",\n  \"total_time\": \"35 minutes\",\n  \"ingredients\": \"Poha:\\n- 2 cups Flattened rice (poha)\\n- 1 medium Onion (finely chopped)\\n- 1 Green chili (slit) (Adjust to taste)\\n- 1/2 teaspoon Mustard seeds\\n- 1/2 teaspoon Turmeric powder\\n- 1/2 teaspoon Salt (Adjust to taste)\\n- 2 tablespoons Oil\\n- 1 tablespoon Fresh coriander leaves (chopped) (For garnish)\\n- 1/4 cup Green peas (optional)\\n- 1 Lemon (Juice for garnish)\\n\\nStuffed Potatoes:\\n- 2 medium-sized Potatoes\\n- 1/2 teaspoon Cumin seeds\\n- 1/2 teaspoon Mustard seeds\\n- 1/2 teaspoon Garam masala\\n- 1/2 teaspoon Red chili powder (Adjust to taste)\\n- 2 tablespoons Onion (finely chopped)\\n- 1 tablespoon Coriander leaves (chopped)\\n- Salt (To taste)\\n- 1 tablespoon Oil\",\n  \"instructions\": \"Stuffed Potatoes:\\n1. Boil the potatoes until tender. Peel and mash them in a bowl.\\n2. In a pan, heat 1 tablespoon oil. Add cumin and mustard seeds; let them splutter. Add onions and sauté until golden brown.\\n3. Add mashed potatoes, garam masala, red chili powder, and salt. Mix well and cook for 2-3 minutes.\\n4. Add chopped coriander leaves, mix, and remove from heat.\\n5. Shape the potato mixture into small patties or dumplings and set aside.\\n\\nPoha:\\n1. Rinse poha under running water and drain. Set aside for 10-15 minutes.\\n2. In a large pan, heat 2 tablespoons oil. Add mustard seeds; let them splutter.\\n3. Add onions and green chili; sauté until translucent.\\n4. Add turmeric powder and green peas (if using) and cook for 1 minute.\\n5. Add drained poha and salt. Toss gently to combine and cook on low heat for 2-3 minutes.\\n6. Turn off heat. Add lemon juice and coriander leaves. Mix gently.\\n\\nFinal Assembly:\\n1. On a plate, serve a portion of poha topped with the stuffed potatoes.\\n2. Garnish with extra coriander and lemon juice if desired.\\n3. Serve warm and enjoy!\",\n  \"tips\": \"- You can customize the stuffing with peas, carrots, or other vegetables for added nutrition.\\n- Serve with yogurt or chutney for extra flavor.\",\n  \"variations\": \"- Substitute potatoes with sweet potatoes for a healthier twist.\\n- Add roasted cashews or peanuts to the poha for a crunchy texture.\",\n  \"tags\": [\"Indian\", \"Vegetarian\", \"Breakfast\", \"Healthy\", \"Quick Meal\"]\n}\n    </UserOutput>\n</Example>\n</Examples>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "625d59c4-63f2-4f3c-88dc-d0a7471f40d6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        208
+      ],
+      "id": "aeab4a67-f238-4317-a248-99e4e59293a5",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "IUrMbzOhONYvsp4M",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "apph95WR3lb2SSekP",
+          "mode": "list",
+          "cachedResultName": "Recipe Dashboard",
+          "cachedResultUrl": "https://airtable.com/apph95WR3lb2SSekP"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblUqu4Z0fQAHMOgt",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/apph95WR3lb2SSekP/tblUqu4Z0fQAHMOgt"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Recipe Name": "={{ $json.output.recipe_name }}",
+            "Description": "={{ $json.output.description }}",
+            "Instruction": "={{ $json.output.instructions }}",
+            "Tips": "={{ $json.output.tips }}",
+            "Ingredients": "={{ $json.output.ingredients }}"
+          },
+          "matchingColumns": [
+            "Recipe Details"
+          ],
+          "schema": [
+            {
+              "id": "Recipe Name",
+              "displayName": "Recipe Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ingredients",
+              "displayName": "Ingredients",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Instruction",
+              "displayName": "Instruction",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Tips",
+              "displayName": "Tips",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        576,
+        0
+      ],
+      "id": "458133ad-ebd3-44da-a53c-7a1d54e3a5c3",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "I5ZFaFG78R3PjdoJ",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"recipe_name\": \"Poha with Stuffed Potatoes\",\n  \"category\": \"Breakfast / Snack\",\n  \"description\": \"A delicious combination of light flattened rice (poha) and flavorful stuffed potatoes, perfect for a wholesome breakfast or snack.\",\n  \"servings\": 2,\n  \"prep_time\": \"15 minutes\",\n  \"cook_time\": \"20 minutes\",\n  \"total_time\": \"35 minutes\",\n  \"ingredients\": \"Poha:\\n- 2 cups Flattened rice (poha)\\n- 1 medium Onion (finely chopped)\\n- 1 Green chili (slit) (Adjust to taste)\\n- 1/2 teaspoon Mustard seeds\\n- 1/2 teaspoon Turmeric powder\\n- 1/2 teaspoon Salt (Adjust to taste)\\n- 2 tablespoons Oil\\n- 1 tablespoon Fresh coriander leaves (chopped) (For garnish)\\n- 1/4 cup Green peas (optional)\\n- 1 Lemon (Juice for garnish)\\n\\nStuffed Potatoes:\\n- 2 medium-sized Potatoes\\n- 1/2 teaspoon Cumin seeds\\n- 1/2 teaspoon Mustard seeds\\n- 1/2 teaspoon Garam masala\\n- 1/2 teaspoon Red chili powder (Adjust to taste)\\n- 2 tablespoons Onion (finely chopped)\\n- 1 tablespoon Coriander leaves (chopped)\\n- Salt (To taste)\\n- 1 tablespoon Oil\",\n  \"instructions\": \"Stuffed Potatoes:\\n1. Boil the potatoes until tender. Peel and mash them in a bowl.\\n2. In a pan, heat 1 tablespoon oil. Add cumin and mustard seeds; let them splutter. Add onions and sauté until golden brown.\\n3. Add mashed potatoes, garam masala, red chili powder, and salt. Mix well and cook for 2-3 minutes.\\n4. Add chopped coriander leaves, mix, and remove from heat.\\n5. Shape the potato mixture into small patties or dumplings and set aside.\\n\\nPoha:\\n1. Rinse poha under running water and drain. Set aside for 10-15 minutes.\\n2. In a large pan, heat 2 tablespoons oil. Add mustard seeds; let them splutter.\\n3. Add onions and green chili; sauté until translucent.\\n4. Add turmeric powder and green peas (if using) and cook for 1 minute.\\n5. Add drained poha and salt. Toss gently to combine and cook on low heat for 2-3 minutes.\\n6. Turn off heat. Add lemon juice and coriander leaves. Mix gently.\\n\\nFinal Assembly:\\n1. On a plate, serve a portion of poha topped with the stuffed potatoes.\\n2. Garnish with extra coriander and lemon juice if desired.\\n3. Serve warm and enjoy!\",\n  \"tips\": \"- You can customize the stuffing with peas, carrots, or other vegetables for added nutrition.\\n- Serve with yogurt or chutney for extra flavor.\",\n  \"variations\": \"- Substitute potatoes with sweet potatoes for a healthier twist.\\n- Add roasted cashews or peanuts to the poha for a crunchy texture.\",\n  \"tags\": [\"Indian\", \"Vegetarian\", \"Breakfast\", \"Healthy\", \"Quick Meal\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        400,
+        208
+      ],
+      "id": "6562aba7-3b0d-43dd-9549-ab9e1222bfae",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "539b4ca9-b31a-44d2-91ec-961c76956f4b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1e57eb7f174e5e9f7965261bf74ecaa6de3007e1b19deacdeb7e148a82bbc62b"
+  },
+  "id": "iDB77CFCWeF3HUMf",
+  "tags": []
+}
