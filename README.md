@@ -22,3 +22,4 @@ This workflow acts as an intelligent recipe assistant. A user can provide the na
 
 ### 🧠 Challenges & Learnings
 One of the key challenges was ensuring the AI's output was consistently in the correct format for the database. I solved this by implementing n8n's native "JSON Mode" for the OpenAI model and creating a robust prompt with clear instructions. This taught me the importance of strict data validation in AI-powered automation.
+![n8n Workflow Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/refs/heads/main/Screenshot%202025-10-08%20213456.png)
