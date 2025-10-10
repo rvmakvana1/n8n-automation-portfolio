@@ -54,7 +54,7 @@ This workflow automates the process of fetching live option chain data for NIFTY
 
 ---
 
-## Project 2: AI-Powered Feedback Sorter & Responder
+## Project 3: AI-Powered Feedback Sorter & Responder
 
 ### 📝 Project Overview
 This workflow automates the entire process of managing and responding to customer feedback. When a user submits a feedback form, this system intelligently analyzes the message using AI to determine its purpose. It automatically categorizes the feedback as a "Complaint," "Compliment," or a "Feature Request," then saves the data to a dedicated Airtable base and **sends targeted email notifications** to the appropriate teams for immediate action. This saves hours of manual work and ensures a rapid and organized response to all user feedback.
@@ -76,8 +76,7 @@ This workflow automates the entire process of managing and responding to custome
 
 **Workflow Screenshot**
 
-![AI Feedback Sorter Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/refs/heads/main/ai-feedback-sorter-screenshot.png])
-
+![AI Feedback Sorter Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/main/ai-feedback-sorter-screenshot.png)
 **Workflow Code File**
 
 [Click here to view the n8n workflow code (ai-feedback-sorter.json)]([यहाँ_अपनी_ai-feedback-sorter.json_फाइल_का_लिंक_डालें])
