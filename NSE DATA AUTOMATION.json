@@ -1,0 +1,398 @@
+{
+  "name": "NSE DATA AUTOMATION",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 3
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -384,
+        -80
+      ],
+      "id": "ac24e816-3fdb-49de-b22a-796a4de4c644",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Cookie",
+              "value": "bm_sv=55B96ECDDCCEF0080DFB798A21446FCF~YAAQHfhWuHN60qKZAQAAVPCKzR11+xwFjdG2wsFzHkxVstMAp9AjwbTxX0PP4HPbuFntfCoY/NhKMj999VXSe8bT1fwaNKmSY0eHdnviOR1OIsI0TLHGZBxkgMwuKaUXJI0Xx58Z7sYKd/1tIOKv/+ZKdXPrK8DPIMj54hIJRSntmflSwdCcpiBSu3egsIbSm2+bdy0r4sQZBEsk5SG9QRrRoufi0To3EFQziIM+GajvA2alMSYOlbZ9mg1/Kc/2S+Oq~1; Domain=.nseindia.com; Path=/; Expires=Fri, 10 Oct 2025 11:52:26 GMT; Max-Age=7088; Secure"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -176,
+        -80
+      ],
+      "id": "e942e8b0-15d9-437c-8102-b2dbdf0eec97",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all the data and the current NIFTY price from the previous node\nconst allData = items[0].json.records.data;\nconst underlyingValue = items[0].json.records.underlyingValue;\n\n// --- Requirement ---\n// Find the strike price closest to the current market price (At-the-Money)\n// and get 3 rows above and 3 rows below it.\nconst range = 3;\n// --- End of Requirement ---\n\n// Find the index of the At-the-Money (ATM) strike price\nlet closestStrikeIndex = -1;\nlet minDifference = Infinity;\n\nallData.forEach((item, index) => {\n  const difference = Math.abs(item.strikePrice - underlyingValue);\n  if (difference < minDifference) {\n    minDifference = difference;\n    closestStrikeIndex = index;\n  }\n});\n\n// If we found the ATM strike, get the data around it\nif (closestStrikeIndex !== -1) {\n  const startIndex = Math.max(0, closestStrikeIndex - range);\n  const endIndex = Math.min(allData.length, closestStrikeIndex + range + 1);\n\n  const finalResults = allData.slice(startIndex, endIndex);\n\n  // Return the final list of 7 rows\n  return finalResults;\n}\n\n// Return empty if something went wrong\nreturn [];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        -80
+      ],
+      "id": "190e63b7-53e1-462b-a4f2-be146050bbda",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ZFkK52MaRNlbHgeE2Zds4aFUGk_jVC6lfu5cTLnCS6g",
+          "mode": "list",
+          "cachedResultName": "NSE Live Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZFkK52MaRNlbHgeE2Zds4aFUGk_jVC6lfu5cTLnCS6g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZFkK52MaRNlbHgeE2Zds4aFUGk_jVC6lfu5cTLnCS6g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{$now}}",
+            "Calls_OI": "={{ $json.CE.openInterest }}",
+            "Calls_CHNG_IN_OI": "={{ $json.CE.changeinOpenInterest }}",
+            "Calls_VOLUME": "={{ $json.CE.totalTradedVolume }}",
+            "Calls_IV": "={{ $json.CE.impliedVolatility }}",
+            "Calls_LTP": "={{ $json.CE.lastPrice }}",
+            "Calls_CHNG": "={{ $json.CE.change }}",
+            "Calls_BID_PRICE": "={{ $json.CE.bidprice }}",
+            "Calls_ASK_PRICE": "={{ $json.CE.askPrice }}",
+            "Calls_ASK_QTY": "={{ $json.CE.askQty }}",
+            "Puts_BID_QTY": "={{ $json.PE.bidQty }}",
+            "Puts_BID_PRICE": "={{ $json.PE.bidprice }}",
+            "Puts_ASK_PRICE": "={{ $json.PE.askPrice }}",
+            "Puts_ASK_QTY": "={{ $json.PE.askQty }}",
+            "Puts_CHNG": "={{ $json.PE.change }}",
+            "Puts_LTP": "={{ $json.PE.lastPrice }}",
+            "Puts_IV": "={{ $json.PE.impliedVolatility }}",
+            "Puts_VOLUME": "={{ $json.PE.totalTradedVolume }}",
+            "Puts_CHNG_IN_OI": "={{ $json.PE.pchangeinOpenInterest }}",
+            "Puts_OI": "={{ $json.PE.openInterest }}",
+            "Calls_BID_QTY": "={{$json.CE.bidQty}}",
+            "Strike_Price": "={{$json.strikePrice}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_OI",
+              "displayName": "Calls_OI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_CHNG_IN_OI",
+              "displayName": "Calls_CHNG_IN_OI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_VOLUME",
+              "displayName": "Calls_VOLUME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_IV",
+              "displayName": "Calls_IV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_LTP",
+              "displayName": "Calls_LTP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_CHNG",
+              "displayName": "Calls_CHNG",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_BID_QTY",
+              "displayName": "Calls_BID_QTY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_BID_PRICE",
+              "displayName": "Calls_BID_PRICE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_ASK_PRICE",
+              "displayName": "Calls_ASK_PRICE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Calls_ASK_QTY",
+              "displayName": "Calls_ASK_QTY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Strike_Price",
+              "displayName": "Strike_Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_BID_QTY",
+              "displayName": "Puts_BID_QTY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_BID_PRICE",
+              "displayName": "Puts_BID_PRICE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_ASK_PRICE",
+              "displayName": "Puts_ASK_PRICE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_ASK_QTY",
+              "displayName": "Puts_ASK_QTY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_CHNG",
+              "displayName": "Puts_CHNG",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_LTP",
+              "displayName": "Puts_LTP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_IV",
+              "displayName": "Puts_IV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_VOLUME",
+              "displayName": "Puts_VOLUME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_CHNG_IN_OI",
+              "displayName": "Puts_CHNG_IN_OI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Puts_OI",
+              "displayName": "Puts_OI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        240,
+        -80
+      ],
+      "id": "04f7002a-2d12-41c9-8cdf-d2017a8ceed6",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "d0MnS7xTFOTwPQou",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f3d38a2a-bf2b-42af-952f-463fdfc688a1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1e57eb7f174e5e9f7965261bf74ecaa6de3007e1b19deacdeb7e148a82bbc62b"
+  },
+  "id": "ZglsWv7wqO9dML1J",
+  "tags": []
+}
