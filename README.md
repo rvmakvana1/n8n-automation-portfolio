@@ -48,3 +48,39 @@ This workflow automates the process of fetching live option chain data for NIFTY
 ### Workflow Visual
 ![NSE Live Option Chain Workflow Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/NSE%20DATA%20.png)
 * [**n8n Workflow Code (NSE DATA AUTOMATION.json)**](./NSE%20DATA%20AUTOMATION.json)
+
+
+---
+
+---
+
+## Project 2: AI-Powered Feedback Sorter & Responder
+
+### 📝 Project Overview
+This workflow automates the entire process of managing and responding to customer feedback. When a user submits a feedback form, this system intelligently analyzes the message using AI to determine its purpose. It automatically categorizes the feedback as a "Complaint," "Compliment," or a "Feature Request," then saves the data to a dedicated Airtable base and **sends targeted email notifications** to the appropriate teams for immediate action. This saves hours of manual work and ensures a rapid and organized response to all user feedback.
+
+### 🛠️ Tools Used
+* **n8n:** The core automation platform that connects all the services.
+* **OpenAI:** The AI model used to analyze and categorize the feedback message.
+* **Airtable:** The database where the categorized feedback is automatically stored in separate, organized tables.
+* **Gmail (or Email Node):** Used for sending automated and conditional email notifications.
+
+### ✨ Key Features
+* **Automated Form Submission Trigger:** The workflow starts instantly when a new feedback form is submitted.
+* **AI-Powered Categorization:** An AI Agent reads the user's message and accurately classifies it into one of three predefined categories.
+* **Intelligent Routing:** A Switch node directs the data down different paths based on the AI's classification.
+* **Structured Record Keeping:** Each piece of feedback is automatically saved to the correct table in an Airtable base, creating a clean and organized database.
+* **Automated Email Notifications:** Based on the feedback category, the workflow automatically sends an email to the appropriate team. For example, complaints are sent to the support team for immediate action, while compliments might be sent to the marketing team for morale.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![AI Feedback Sorter Screenshot]([यहाँ_अपने_AI_Feedback_Sorter_के_स्क्रीनशॉट_का_लिंक_डालें])
+
+**Workflow Code File**
+
+[Click here to view the n8n workflow code (ai-feedback-sorter.json)]([यहाँ_अपनी_ai-feedback-sorter.json_फाइल_का_लिंक_डालें])
+
+### 🧠 Challenges & Learnings
+The main challenge was to ensure the AI could accurately categorize diverse user feedback with a simple prompt. I learned that by giving the AI a very specific and focused role ("Your role is to determine..."), even a simple prompt can yield highly accurate and reliable results. This project demonstrates that complex decision-making and follow-up actions (like sending emails) can be effectively automated.
