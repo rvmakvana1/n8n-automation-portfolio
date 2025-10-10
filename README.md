@@ -46,5 +46,5 @@ This workflow automates the process of fetching live option chain data for NIFTY
 
 ### Project Files
 ### Workflow Visual
-![NSE Live Option Chain Workflow Screenshot](./NSE%20DATA.png)
+![NSE Live Option Chain Workflow Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/NSE%20DATA%20.png)
 * [**n8n Workflow Code (NSE DATA AUTOMATION.json)**](./NSE%20DATA%20AUTOMATION.json)
