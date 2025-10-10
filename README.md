@@ -76,7 +76,7 @@ This workflow automates the entire process of managing and responding to custome
 
 **Workflow Screenshot**
 
-![AI Feedback Sorter Screenshot]([यहाँ_अपने_AI_Feedback_Sorter_के_स्क्रीनशॉट_का_लिंक_डालें])
+![AI Feedback Sorter Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-feedback-sorter-screenshot.png])
 
 **Workflow Code File**
 
