@@ -110,6 +110,6 @@ This is a creative and engaging workflow that demonstrates the power of AI for h
 
 **Workflow Code File**
 
-[Click here to view the n8n workflow code (ai-poem-generator-deepseek.json)]()
+[Click here to view the n8n workflow code (ai-poem-generator-deepseek.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-personalized-poem-generator.json)
 ### 🧠 Challenges & Learnings
 The interesting part of this project was designing a workflow that handles creative generation. I learned that automation isn't limited to business-centric tasks; it can also be a powerful tool for creating personalized user experiences. Experimenting with the **DeepSeek model** specifically showed its strong capability in generating concise and creative text based on minimal input.
