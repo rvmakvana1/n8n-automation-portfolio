@@ -106,7 +106,7 @@ This is a creative and engaging workflow that demonstrates the power of AI for h
 
 **Workflow Screenshot**
 
-![AI Poem Generator Screenshot]([https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/refs/heads/main/ai-personalized-poem-generator-screenshot.png])
+![AI Poem Generator Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-personalized-poem-generator-screenshot.png?raw=true])
 
 **Workflow Code File**
 
