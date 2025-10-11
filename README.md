@@ -138,7 +138,7 @@ This workflow functions as a personal inbox assistant, designed to automate the 
 
 **Workflow Screenshot**
 
-![Email Reply Agent Screenshot]([यहाँ_अपने_Email_Reply_Agent_के_स्क्रीनशॉट_का_लिंक_डालें])
+![Email Reply Agent Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-email-reply-agent-screenshot.png?raw=true])
 
 **Workflow Code File**
 
