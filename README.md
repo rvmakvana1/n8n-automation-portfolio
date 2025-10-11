@@ -77,7 +77,7 @@ This workflow automates the entire process of managing and responding to custome
 ![AI Feedback Sorter Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/main/ai-feedback-sorter-screenshot.png)
 **Workflow Code File**
 
-[Click here to view the n8n workflow code (ai-feedback-sorter.json)](यहाँ_अपना_ai-feedback-sorter.json_का_लिंक_पेस्ट_करें)
+[Click here to view the n8n workflow code (ai-feedback-sorter.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-feedback-sorter.json)
 ### 🧠 Challenges & Learnings
 The main challenge was to ensure the AI could accurately categorize diverse user feedback with a simple prompt. I learned that by giving the AI a very specific and focused role ("Your role is to determine..."), even a simple prompt can yield highly accurate and reliable results. This project demonstrates that complex decision-making and follow-up actions (like sending emails) can be effectively automated.
 
