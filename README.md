@@ -141,6 +141,6 @@ This workflow functions as a personal inbox assistant, designed to automate the 
 ![Email Reply Agent Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/main/ai-email-reply-agent-screenshot.png)
 **Workflow Code File**
 
-[Click here to view the n8n workflow code (ai-email-reply-agent.json)](यहाँ_अपना_ai-email-reply-agent.json_का_लिंक_पेस्ट_करें)
+[Click here to view the n8n workflow code (ai-email-reply-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Email%20Reply%20Agent.json)
 ### 🧠 Challenges & Learnings
 The primary challenge was to make the AI's replies sound genuinely human. This was solved by creating a very detailed XML-style system message that gave the AI a complete personality and context with OpenAI. A key learning was the importance of building a full "loop" in automation—not just performing the main action (replying), but also including setup (fetching mail) and cleanup (marking as read) to create a truly reliable system.
