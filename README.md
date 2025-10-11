@@ -52,8 +52,6 @@ This workflow automates the process of fetching live option chain data for NIFTY
 
 ---
 
----
-
 ## Project 3: AI-Powered Feedback Sorter & Responder
 
 ### 📝 Project Overview
@@ -83,3 +81,36 @@ This workflow automates the entire process of managing and responding to custome
 
 ### 🧠 Challenges & Learnings
 The main challenge was to ensure the AI could accurately categorize diverse user feedback with a simple prompt. I learned that by giving the AI a very specific and focused role ("Your role is to determine..."), even a simple prompt can yield highly accurate and reliable results. This project demonstrates that complex decision-making and follow-up actions (like sending emails) can be effectively automated.
+
+
+---
+
+## Project 4: Personalized AI Poem Generator (ft. DeepSeek)
+
+### 📝 Project Overview
+This is a creative and engaging workflow that demonstrates the power of AI for hyper-personalization. It takes a user's details—such as their name, appearance, and profession—through a simple web form. An AI Agent, powered by the **DeepSeek Chat Model**, then uses these details to instantly create a unique, two-line poem specifically for that person. The generated poem is then automatically saved back into an Airtable database.
+
+### 🛠️ Tools Used
+* **n8n:** The core automation platform for building and running the workflow.
+* **n8n Forms:** Used as the simple web interface for collecting user details.
+* **DeepSeek Chat Model:** The creative AI engine that generates the personalized poem based on the user's input.
+* **Airtable:** The database used to first log the user's submission and then update it with the AI-generated poem.
+
+### ✨ Key Features
+* **Simple Web Form Input:** An easy-to-use n8n form allows anyone to input their details without any technical knowledge.
+* **Dynamic AI Prompting:** The AI prompt is dynamically populated with the data from the form, ensuring each poem is unique and relevant to the user.
+* **Creative Content Generation:** This workflow showcases how specific AI models like DeepSeek can be used for creative tasks, not just analytical ones.
+* **Two-Step Database Operation:** The system first creates a record in Airtable and then updates that same record with the AI's output, a robust pattern that ensures data integrity.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![AI Poem Generator Screenshot]([https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/refs/heads/main/ai-personalized-poem-generator-screenshot.png])
+
+**Workflow Code File**
+
+[Click here to view the n8n workflow code (ai-poem-generator-deepseek.json)]([यहाँ_अपनी_ai-poem-generator-deepseek.json_फाइल_का_लिंक_डालें])
+
+### 🧠 Challenges & Learnings
+The interesting part of this project was designing a workflow that handles creative generation. I learned that automation isn't limited to business-centric tasks; it can also be a powerful tool for creating personalized user experiences. Experimenting with the **DeepSeek model** specifically showed its strong capability in generating concise and creative text based on minimal input.
