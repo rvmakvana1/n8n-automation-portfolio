@@ -112,3 +112,37 @@ This is a creative and engaging workflow that demonstrates the power of AI for h
 [Click here to view the n8n workflow code (ai-poem-generator-deepseek.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-personalized-poem-generator.json)
 ### 🧠 Challenges & Learnings
 The interesting part of this project was designing a workflow that handles creative generation. I learned that automation isn't limited to business-centric tasks; it can also be a powerful tool for creating personalized user experiences. Experimenting with the **DeepSeek model** specifically showed its strong capability in generating concise and creative text based on minimal input.
+
+
+---
+
+## Project 5: OpenAI-Powered Email Reply Agent
+
+### 📝 Project Overview
+This workflow functions as a personal inbox assistant, designed to automate the process of replying to incoming emails. The system runs on a schedule, automatically checks a Gmail inbox for new, unread messages, and uses a highly customized **OpenAI** Agent to draft professional, human-like replies. After logging the reply for record-keeping, it marks the original email as "read" to ensure it isn't processed again. This is a powerful productivity tool that saves significant time on email management.
+
+### 🛠️ Tools Used
+* **n8n:** The core automation platform.
+* **Gmail:** Used for fetching incoming emails and marking them as read.
+* **OpenAI:** The AI brain that analyzes the email content and drafts the reply based on a custom persona.
+* **Airtable (or similar database):** Used to create a log of every email that has been automatically replied to.
+
+### ✨ Key Features
+* **Scheduled Operation:** The workflow runs automatically at set intervals to proactively manage the inbox.
+* **Selective Processing:** It is configured to only fetch the top unread emails, making the process highly efficient.
+* **Context-Aware AI Replies:** The AI Agent is equipped with a detailed system message that defines its role and user-specific information, enabling it to generate contextually relevant replies.
+* **Automated Logging:** Every action taken by the agent is recorded in an Airtable base, creating a transparent log of all automated communications.
+* **Inbox Cleanup:** By marking emails as "read" after processing, the workflow maintains a clean and robust automation loop.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![Email Reply Agent Screenshot]([यहाँ_अपने_Email_Reply_Agent_के_स्क्रीनशॉट_का_लिंक_डालें])
+
+**Workflow Code File**
+
+[Click here to view the n8n workflow code (ai-email-reply-agent.json)]([यहाँ_अपनी_ai-email-reply-agent.json_फाइल_का_लिंक_डालें])
+
+### 🧠 Challenges & Learnings
+The primary challenge was to make the AI's replies sound genuinely human. This was solved by creating a very detailed XML-style system message that gave the AI a complete personality and context with OpenAI. A key learning was the importance of building a full "loop" in automation—not just performing the main action (replying), but also including setup (fetching mail) and cleanup (marking as read) to create a truly reliable system.
