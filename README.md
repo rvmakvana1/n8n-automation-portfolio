@@ -174,14 +174,14 @@ This system is divided into two distinct, automated workflows:
 Below are the screenshots and links to the code for both parts of the system.
 
 #### Part 1: Knowledge Base Builder Workflow
-![Knowledge Base Builder Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-knowledge-base-builder-screenshot.png?raw=true])
+![Knowledge Base Builder Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/main/rag-knowledge-base-builder-screenshot.png)
 
-[Click here for the Knowledge Base Builder code (rag-knowledge-base-builder.json)]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-knowledge-base-builder%20Step-1.json])
+[Click here for the Knowledge Base Builder code (rag-knowledge-base-builder.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-knowledge-base-builder.json)
 
 #### Part 2: The Chat Agent Workflow
-![Chat Agent Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-chat-agent-screenshot.png?raw=true])
+![Chat Agent Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/main/rag-chat-agent-screenshot.png)
 
-[Click here for the Chat Agent Workflow code (rag-chat-agent.json)]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-chat-agent%20Step-2.json])
+[Click here for the Chat Agent Workflow code (rag-chat-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-chat-agent.json)
 
 ### 🧠 Challenges & Learnings
 Building this RAG agent was a significant step up in complexity. The main challenge was designing the two-part architecture for continuous learning and real-time answering. A key learning was the power of vector embeddings, which allow the AI to search for information based on semantic meaning, not just keywords. This makes the system incredibly powerful and versatile, capable of working with any document and in multiple languages without any changes.
