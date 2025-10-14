@@ -144,3 +144,44 @@ This workflow functions as a personal inbox assistant, designed to automate the 
 [Click here to view the n8n workflow code (ai-email-reply-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Email%20Reply%20Agent.json)
 ### 🧠 Challenges & Learnings
 The primary challenge was to make the AI's replies sound genuinely human. This was solved by creating a very detailed XML-style system message that gave the AI a complete personality and context with OpenAI. A key learning was the importance of building a full "loop" in automation—not just performing the main action (replying), but also including setup (fetching mail) and cleanup (marking as read) to create a truly reliable system.
+
+
+---
+
+## Project 6: Advanced RAG Agent for Custom Knowledge Base
+
+### 📝 Project Overview
+This project showcases an advanced AI system known as a Retrieval-Augmented Generation (RAG) agent. The system is built in two parts: the first part automatically processes and "learns" from documents uploaded to Google Drive, creating a specialized knowledge base in Pinecone. The second part is a chat agent that uses this custom knowledge base to answer user questions with high accuracy, even in multiple languages. This is a powerful, self-updating system that can be adapted for any company's internal documents.
+
+### 🛠️ Tools Used
+* **n8n:** The core platform for both workflows.
+* **Google Drive:** Used to trigger the learning process.
+* **Pinecone:** The vector database for storing the knowledge.
+* **OpenAI:** Used for creating vector embeddings and generating answers.
+
+### ✨ Key Features & How It Works
+
+This system is divided into two distinct, automated workflows:
+
+**Part 1: The Knowledge Base Builder**
+* This workflow constantly monitors a Google Drive folder. When a new document is added, it automatically reads the content, breaks it down into meaningful chunks, converts those chunks into vector embeddings using AI, and stores them in the Pinecone database. This part is responsible for the continuous learning of the system.
+
+**Part 2: The Intelligent Q&A Agent**
+* This is the user-facing chat agent. When a user asks a question, the agent searches the Pinecone knowledge base to find the most relevant information from the uploaded documents. It then provides this information to the OpenAI model along with the original question, enabling the AI to generate a precise answer based on verified facts.
+
+### 🖼️ Workflow Visuals & Code
+
+Below are the screenshots and links to the code for both parts of the system.
+
+#### Part 1: Knowledge Base Builder Workflow
+![Knowledge Base Builder Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-knowledge-base-builder-screenshot.png?raw=true])
+
+[Click here for the Knowledge Base Builder code (rag-knowledge-base-builder.json)]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-knowledge-base-builder%20Step-1.json])
+
+#### Part 2: The Chat Agent Workflow
+![Chat Agent Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-chat-agent-screenshot.png?raw=true])
+
+[Click here for the Chat Agent Workflow code (rag-chat-agent.json)]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/rag-chat-agent%20Step-2.json])
+
+### 🧠 Challenges & Learnings
+Building this RAG agent was a significant step up in complexity. The main challenge was designing the two-part architecture for continuous learning and real-time answering. A key learning was the power of vector embeddings, which allow the AI to search for information based on semantic meaning, not just keywords. This makes the system incredibly powerful and versatile, capable of working with any document and in multiple languages without any changes.
