@@ -215,7 +215,7 @@ This project showcases a voice-based AI Calling Agent that can have a real-time 
 
 **Workflow Code File**
 
-[Click here for the Calling Agent Workflow code (rag-calling-agent.json)]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/RAG%20Calling%20Agent.json)
+[Click here for the Calling Agent Workflow code (rag-calling-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/RAG%20Calling%20Agent.json)
 
 ### 🧠 Challenges & Learnings
 The most significant challenge was maintaining conversation memory. Unlike a simple chat, a phone call requires the agent to remember the context of the entire conversation. The solution involves ensuring the calling platform sends a unique `call_id` with every webhook request and using that ID as the "Session ID" in n8n's `Simple Memory` node. This project was a major learning experience in bridging the gap between text-based AI and real-time voice interaction.
