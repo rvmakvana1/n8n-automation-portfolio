@@ -185,3 +185,37 @@ Below are the screenshots and links to the code for both parts of the system.
 
 ### 🧠 Challenges & Learnings
 Building this RAG agent was a significant step up in complexity. The main challenge was designing the two-part architecture for continuous learning and real-time answering. A key learning was the power of vector embeddings, which allow the AI to search for information based on semantic meaning, not just keywords. This makes the system incredibly powerful and versatile, capable of working with any document and in multiple languages without any changes.
+
+
+---
+
+## Project 7: AI Calling Agent with Custom Knowledge Base (RAG)
+
+### 📝 Project Overview
+This project showcases a voice-based AI Calling Agent that can have a real-time phone conversation with a user. The agent's core function is to answer specific questions by retrieving information from a **pre-built custom knowledge base** (stored in a Pinecone vector database). This workflow represents the "live" part of a full RAG system, handling the user interaction, information retrieval, and voice response. It's a powerful example of how to create automated, intelligent customer support or virtual assistant systems.
+
+### 🛠️ Tools Used
+* **n8n:** The core automation platform.
+* **Webhook:** To receive real-time data from the calling platform.
+* **Calling Platform (e.g., ElevenLabs):** Handles the voice-to-text and text-to-voice for the phone call.
+* **Pinecone:** The vector database where the custom knowledge is searched.
+* **OpenAI:** Used for generating human-like, conversational answers based on the retrieved information.
+
+### ✨ Key Features
+* **Real-time Call Handling:** The workflow is triggered instantly by a webhook when a user makes a phone call.
+* **Smart Information Retrieval:** The agent takes the user's spoken question, searches the Pinecone knowledge base to find the most relevant facts from the custom documents.
+* **Context-Aware Generation:** The AI model receives both the user's question and the retrieved information to generate a precise answer grounded in facts.
+* **Voice Response:** The workflow sends the text answer back to the calling platform, which converts it to speech for the user to hear, completing the conversational loop.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![Calling Agent Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Rag%20Calling%20Voice%20%20Agent.png?raw=true])
+
+**Workflow Code File**
+
+[Click here for the Calling Agent Workflow code (rag-calling-agent.json)]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/RAG%20Calling%20Agent.json])
+
+### 🧠 Challenges & Learnings
+The most significant challenge was maintaining conversation memory. Unlike a simple chat, a phone call requires the agent to remember the context of the entire conversation. The solution involves ensuring the calling platform sends a unique `call_id` with every webhook request and using that ID as the "Session ID" in n8n's `Simple Memory` node. This project was a major learning experience in bridging the gap between text-based AI and real-time voice interaction.
