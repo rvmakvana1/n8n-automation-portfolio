@@ -211,7 +211,7 @@ This project showcases a voice-based AI Calling Agent that can have a real-time 
 
 **Workflow Screenshot**
 
-![Calling Agent Screenshot]([https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Rag%20Calling%20Voice%20%20Agent.png?raw=true])
+![Calling Agent Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Rag%20Calling%20Voice%20%20Agent.png?raw=true)
 
 **Workflow Code File**
 
