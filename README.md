@@ -189,33 +189,42 @@ Building this RAG agent was a significant step up in complexity. The main challe
 
 ---
 
-## Project 7: AI Calling Agent with Custom Knowledge Base (RAG)
+---
+
+## Project 7: AI WhatsApp Restaurant Bot (via Meta API)
 
 ### 📝 Project Overview
-This project showcases a voice-based AI Calling Agent that can have a real-time phone conversation with a user. The agent's core function is to answer specific questions by retrieving information from a **pre-built custom knowledge base** (stored in a Pinecone vector database). This workflow represents the "live" part of a full RAG system, handling the user interaction, information retrieval, and voice response. It's a powerful example of how to create automated, intelligent customer support or virtual assistant systems.
+This is a fully autonomous AI agent built in n8n that manages a restaurant's complete ordering system **directly through the official Meta WhatsApp API**. This bot acts as a smart food ordering assistant for "MDA Restaurant," handling the entire customer conversation in real-time.
+
+A key feature of this agent is its resourcefulness: it uses **Google Sheets as its sole database and knowledge base**. It intelligently switches between different "tools" to check inventory, answer FAQs, and post confirmed orders to different sheets. The agent is powered by the **DeepSeek Chat Model** for natural and intelligent conversation.
 
 ### 🛠️ Tools Used
 * **n8n:** The core automation platform.
-* **Webhook:** To receive real-time data from the calling platform.
-* **Calling Platform (e.g., ElevenLabs):** Handles the voice-to-text and text-to-voice for the phone call.
-* **Pinecone:** The vector database where the custom knowledge is searched.
-* **OpenAI:** Used for generating human-like, conversational answers based on the retrieved information.
+* **WhatsApp Trigger (Meta API):** Connects directly to the Meta for Developers App for instant, two-way communication.
+* **DeepSeek Chat Model:** The AI brain for understanding context and deciding which tool to use.
+* **Google Sheets (as Database):**
+    * `GET Inventory` (Tool 1): A node that reads a sheet to check stock levels.
+    * `get FAQ` (Tool 2): A node that reads a sheet to answer common questions.
+    * `Post Order` (Tool 3): A node that writes to a sheet to confirm new orders.
+* **Simple Memory:** To maintain a stateful conversation and remember the user's order.
 
 ### ✨ Key Features
-* **Real-time Call Handling:** The workflow is triggered instantly by a webhook when a user makes a phone call.
-* **Smart Information Retrieval:** The agent takes the user's spoken question, searches the Pinecone knowledge base to find the most relevant facts from the custom documents.
-* **Context-Aware Generation:** The AI model receives both the user's question and the retrieved information to generate a precise answer grounded in facts.
-* **Voice Response:** The workflow sends the text answer back to the calling platform, which converts it to speech for the user to hear, completing the conversational loop.
+* **Direct Meta API Integration:** Uses the official `WhatsApp Trigger` node, demonstrating a complex setup with Meta's developer platform.
+* **Google Sheets as a "Database":** The AI agent uses Google Sheets as its live database, proving that powerful AI systems can run on simple, cost-effective tools.
+* **Multi-Tool Capability:** The agent is prompted to intelligently choose between its three different Google Sheet tools based on the user's request (e.g., checking inventory vs. answering a question).
+* **End-to-End Order Management:** Handles the entire flow: from the initial "hello" to checking stock, taking the order, and finally confirming it by writing to a Google Sheet.
 
 ### 🖼️ Workflow Visual & Code
 
 **Workflow Screenshot**
 
-![Calling Agent Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Rag%20Calling%20Voice%20%20Agent.png?raw=true)
+![WhatsApp Order Bot Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-whatsapp-restaurant-bot-screenshot.png?raw=true)
 
 **Workflow Code File**
 
-[Click here for the Calling Agent Workflow code (rag-calling-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/RAG%20Calling%20Agent.json)
+[Click here for the workflow code (ai-whatsapp-restaurant-bot.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-whatsapp-restaurant-bot.json)
 
 ### 🧠 Challenges & Learnings
-The most significant challenge was maintaining conversation memory. Unlike a simple chat, a phone call requires the agent to remember the context of the entire conversation. The solution involves ensuring the calling platform sends a unique `call_id` with every webhook request and using that ID as the "Session ID" in n8n's `Simple Memory` node. This project was a major learning experience in bridging the gap between text-based AI and real-time voice interaction.
+The most significant technical challenge of this project was not in n8n, but in navigating the complex **Meta for Developers platform** to successfully set up the WhatsApp Business App and generate the permanent secret keys and credentials. This is a major technical hurdle that was successfully overcome.
+
+On the n8n side, the main challenge was crafting a precise prompt for the DeepSeek model, teaching it to reliably switch between its three different Google Sheet "tools" based purely on the user's WhatsApp message. This project demonstrates a complete, practical, and end-to-end automated system for any small business.
