@@ -4,26 +4,48 @@ Welcome to my portfolio of AI and workflow automation projects. Here, I showcase
 
 ---
 
-## Project 1: AI Recipe Generator & Airtable Automation
+---
+
+## Project 1: AI-Powered Instagram DM Lead Qualifier (Manychat + n8n)
 
 ### 📝 Project Overview
-This workflow acts as an intelligent recipe assistant. A user can provide the name of a dish via a simple chat interface, and the AI agent automatically generates a complete, detailed recipe and saves it neatly into an Airtable database. This project demonstrates the power of connecting AI with no-code platforms to automate content creation.
+This is a highly advanced, multi-platform conversational AI agent designed to automate the entire lead qualification funnel for a business coach directly through Instagram DMs. This system handles real-time conversations, qualifies new leads based on a specific set of rules, captures their information, and even upsells them to a discovery call—all without any human intervention.
+
+The architecture is a sophisticated blend: **Manychat** handles the Instagram DM connection and initial user interaction, while an **n8n Webhook** sends the user's messages to an **n8n** workflow. This n8n workflow acts as the "brain," using a **DeepSeek AI Agent** (with a detailed system prompt) and **Simple Memory** to manage a stateful, human-like conversation, qualifying the lead before sending the data to Google Sheets and returning the response to Manychat.
 
 ### 🛠️ Tools Used
-* **n8n:** The core platform for building and running the workflow.
-* **OpenAI (GPT Model):** The AI brain responsible for understanding the request and generating the recipe content.
-* **Airtable:** The database where all the generated recipes are stored in a structured format.
+* **n8n:** The core backend "brain" of the operation, hosting the AI agent and logic.
+* **Manychat:** The frontend integration layer, connecting Instagram DMs to n8n via external requests and managing the user interface.
+* **Instagram:** The user-facing chat platform.
+* **DeepSeek Chat Model:** The AI model used for natural, context-aware conversation.
+* **Google Sheets:** Used as the database to capture qualified leads.
+* **Simple Memory (n8n):** Crucial for maintaining a stateful conversation, allowing the bot to remember previous questions and answers using the Manychat `contactId`.
 
 ### ✨ Key Features
-* **Chat-based Interaction:** Easy to use, just type the name of the dish.
-* **Structured AI Output:** The AI is configured to return the recipe in a precise JSON format, ensuring data consistency.
-* **Automated Data Entry:** The workflow automatically creates a new record in Airtable for each recipe, eliminating manual data entry.
-* **Data Transformation:** The workflow intelligently formats complex data (like lists of ingredients and instructions) into a simple text format suitable for Airtable fields.
+* **Real-Time DM Automation:** The agent responds instantly to Instagram DMs triggered by specific keywords (e.g., "Checklist").
+* **Complex Conversation Flow:** The AI follows a detailed conversational script, asks qualifying questions one by one, and waits for responses.
+* **Lead Qualification Logic:** Based on the user's answers, the AI determines if a lead is "qualified" or "disqualified" according to predefined rules.
+* **Automated Lead Capture:** Once qualified, the agent uses an n8n tool to automatically push the new lead's name and email to a Google Sheet.
+* **Dynamic Upsell:** Offers a free checklist to all users but offers a high-value discovery call *only* to qualified leads.
+
+### 🖼️ Workflow Visuals & Code
+
+**Manychat Flow (Frontend)**
+* *This screenshot shows the Manychat automation that captures user input and interacts with the n8n backend.*
+
+![Manychat Instagram Flow](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-instagram-manychat-flow-screenshot.png?raw=true)
+
+**n8n Workflow (Backend "Brain")**
+* *This screenshot shows the n8n workflow that processes the conversation, uses AI, and manages data.*
+
+![Instagram AI Agent Brain](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-instagram-dm-lead-qualifier-screenshot.png?raw=true)
+
+**n8n Workflow Code File**
+
+[Click here for the n8n workflow code (ai-instagram-dm-lead-qualifier.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-instagram-dm-lead-qualifier.json)
 
 ### 🧠 Challenges & Learnings
-One of the key challenges was ensuring the AI's output was consistently in the correct format for the database. I solved this by implementing n8n's native "JSON Mode" for the OpenAI model and creating a robust prompt with clear instructions. This taught me the importance of strict data validation in AI-powered automation.
-![n8n Workflow Screenshot](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/refs/heads/main/Screenshot%202025-10-08%20213456.png)
-
+The most complex challenge was successfully integrating Manychat with an external n8n AI agent via Webhooks for a *stateful* conversation. The solution involved using Manychat to send the user's message and `contactId` to n8n, letting n8n handle memory (using `contactId` as the Session ID) and logic, and then returning the response to Manychat. This project demonstrates a powerful, scalable architecture for building truly autonomous agents on social media.
 
 ---
 
