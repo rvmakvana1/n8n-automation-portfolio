@@ -1,6 +1,6 @@
 # My n8n Automation Portfolio
 
-Welcome to my portfolio of AI and workflow automation projects. Here, I showcase various solutions I've built using tools like n8n, OpenAI, and more.
+Portfolio of an AI Agent & Automation Specialist leveraging n8n, OpenAI, DeepSeek & more. Demonstrating expertise in building intelligent, multi-platform automations from concept to deployment.
 
 ---
 
