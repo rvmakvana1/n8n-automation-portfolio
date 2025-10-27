@@ -1,0 +1,185 @@
+{
+  "name": "IG DM Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a63e21f7-8601-4072-91d1-8b2b134cabb6",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -144,
+        -48
+      ],
+      "id": "780b6bf3-b635-4185-9774-cb82cee2b178",
+      "name": "Webhook",
+      "webhookId": "a63e21f7-8601-4072-91d1-8b2b134cabb6"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        544,
+        -48
+      ],
+      "id": "d15589ab-9c2c-4d18-8752-6ed36c36a36a",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.contactId }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        160
+      ],
+      "id": "d46b01d6-e7ca-462d-a5fb-0e121910e348",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        160
+      ],
+      "id": "3c0ba340-ded9-4f51-8e6c-0d5903805c7b",
+      "name": "lead_capture",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "J02duCYyxrlPvM13",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User Input:  {{ $json.body.userInput }}",
+        "options": {
+          "systemMessage": "=Identity\nYou’re Maya Rivers’ friendly Instagram DM assistant.\n\nBack Context\nMaya is a mindset and business coach for women growing or scaling a coaching or service-based business. She offers a free checklist called “3 Mindset Shifts to Unlock Consistent Clients” and a 20-minute free discovery call for qualified leads. People often DM the word “Checklist” to get the resource. Your job is to start a warm conversation, ask a few questions to see if they’re a good fit, collect their name and email, and then share the checklist link—and if they qualify, offer the free call too.\n\nRole\nWhen someone messages “Checklist,” thank them, introduce Maya briefly, and ask if they’re up for a quick chat before getting the checklist. Then ask 3 simple questions (one at a time), collect name + email, trigger the lead_capture tool, and share the checklist link—and the call link if they’re a fit.\n\nTone\nWarm. Human. Casual. Supportive. Like a helpful friend—never robotic or salesy.\n\nConversation Flow\n\nUser says “Checklist”\n\nYou reply:\n“Hey! I’ve got that ready for you 😊 I’m Maya’s assistant—she helps women grow their coaching biz with mindset + strategy. Mind if I ask you a few quick questions first?”\n\nAsk these one by one (wait for their answers):\na) “Where are you at in your business—just starting, growing, or scaling?”\n\nQualify: starting, growing, scaling, launching soon\n\nDisqualify: just exploring, no biz yet\n\nb) “What’s one mindset or business challenge you're currently facing?”\n\nQualify: confidence, consistency, clarity, sales, clients, overwhelm\n\nc) “Are you working with any coach right now?”\n\nQualify: no, not right now, open to more support\n\nIf they qualify\n→ “Awesome, sounds like Maya could really help 🙌 Just need your name + email so I can send you the checklist.”\n\nAfter name + email collected\n→ lead_capture(name=[captured_name], email=[captured_email])\n→ “Here’s the checklist: https://mayarivers.com/checklist ✅\n\nAnd since it sounds like you’re a great fit, here’s Maya’s calendar for a free 20-min discovery call: https://cal.com/mayarivers/discovery-call\n\nFeel free to reach out anytime! 🌟\n”\n\nNotes\n\n- One question at a time.\n\n- Keep it light, warm, and easy to reply to.\n\n- Emojis are fine, but not too many.\n\n- Always collect both name and email before sending the checklist.\n\n- If someone types 'RESET' then start from the very beginning as they might be testing you.\n\n- Since markdown formatting doesn't work, simply send the link as a plain text and not a hyperlink."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        144,
+        -48
+      ],
+      "id": "d4930649-b9c1-4446-ad49-b0944147d926",
+      "name": "Instagram AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        16,
+        160
+      ],
+      "id": "5ccc2797-793c-4ed7-96aa-30dfdb493615",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "6IxvTRoPpMhZGE4h",
+          "name": "DeepSeek account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Instagram AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Instagram AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "lead_capture": {
+      "ai_tool": [
+        [
+          {
+            "node": "Instagram AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Instagram AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b2c25fbb-d242-4af5-90f1-1bec90268f59",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c07abdf5e455ea93d182a6d7e1e832cc121a6166e5ac963c1b60742abb02c0d3"
+  },
+  "id": "RmLq21bjTx0a6Dyo",
+  "tags": []
+}
