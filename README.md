@@ -250,3 +250,43 @@ A key feature of this agent is its resourcefulness: it uses **Google Sheets as i
 The most significant technical challenge of this project was not in n8n, but in navigating the complex **Meta for Developers platform** to successfully set up the WhatsApp Business App and generate the permanent secret keys and credentials. This is a major technical hurdle that was successfully overcome.
 
 On the n8n side, the main challenge was crafting a precise prompt for the DeepSeek model, teaching it to reliably switch between its three different Google Sheet "tools" based purely on the user's WhatsApp message. This project demonstrates a complete, practical, and end-to-end automated system for any small business.
+
+
+---
+
+## Project 8 : AI Calling Agent with Custom Knowledge Base (RAG + ElevenLabs)
+
+### 📝 Project Overview
+This project showcases a sophisticated, real-time **AI Calling Agent** capable of holding voice conversations and answering questions based on a custom knowledge base. Built using **n8n**, this agent integrates directly with **ElevenLabs** (as the voice platform) via **Webhooks**.
+
+When a user calls the agent, ElevenLabs converts their speech to text and sends it to the n8n Webhook. The n8n workflow then uses a RAG (Retrieval-Augmented Generation) pipeline: it searches a **Pinecone** vector database (populated with custom documents) for relevant information, uses **OpenAI** to generate a natural language response based on that context, and sends the text response back to ElevenLabs via the `Respond to Webhook` node. ElevenLabs converts this text back into speech for the user, enabling a seamless voice conversation powered by custom data.
+
+### 🛠️ Tools Used
+* **n8n:** The core automation engine orchestrating the logic.
+* **Webhook (n8n):** Receives real-time voice transcriptions from ElevenLabs.
+* **ElevenLabs:** The voice AI platform handling Text-to-Speech (TTS), Speech-to-Text (STT), and call management.
+* **Pinecone:** Vector database storing and providing semantic search capabilities for the custom knowledge base.
+* **OpenAI Embeddings:** Used to convert text chunks into vectors for storage and search.
+* **OpenAI Chat Model:** Generates the final conversational response based on retrieved context.
+* **Simple Memory (n8n):** Essential for maintaining conversation state throughout the phone call using a unique `call_id`.
+* **Respond to Webhook (n8n):** Sends the generated text response back to ElevenLabs.
+
+### ✨ Key Features
+* **Real-time Voice Conversation:** Enables natural voice interaction with an AI agent.
+* **Custom Knowledge Base (RAG):** The agent answers questions based on specific documents provided by the user, not just general knowledge.
+* **Direct Webhook Integration:** Demonstrates real-time data exchange between n8n and a voice platform like ElevenLabs.
+* **Stateful Memory Management:** Utilizes a unique identifier (`call_id` from ElevenLabs, passed via webhook) to remember the context of the ongoing phone call.
+* **End-to-End Voice Automation:** Manages the entire loop from receiving voice, processing, retrieving info, generating response, and sending voice back.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![RAG Calling Agent Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Rag%20Calling%20Voice%20%20Agent.png?raw=true)
+
+**Workflow Code File**
+
+[Click here for the Calling Agent Workflow code (rag-calling-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/RAG%20Calling%20Agent.json)
+
+### 🧠 Challenges & Learnings
+The most critical challenge was establishing and maintaining **conversation memory** in a real-time voice call scenario. Unlike text chats, voice requires immediate responses and robust state management. The key was configuring **ElevenLabs** to send a unique `call_id` within the webhook payload and then utilizing this ID as the **Session Key** in n8n's `Simple Memory` node. This project highlights the complexities and solutions involved in building sophisticated, stateful voice AI agents integrated with custom knowledge bases.
