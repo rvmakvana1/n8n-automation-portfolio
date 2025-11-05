@@ -290,3 +290,40 @@ When a user calls the agent, ElevenLabs converts their speech to text and sends 
 
 ### 🧠 Challenges & Learnings
 The most critical challenge was establishing and maintaining **conversation memory** in a real-time voice call scenario. Unlike text chats, voice requires immediate responses and robust state management. The key was configuring **ElevenLabs** to send a unique `call_id` within the webhook payload and then utilizing this ID as the **Session Key** in n8n's `Simple Memory` node. This project highlights the complexities and solutions involved in building sophisticated, stateful voice AI agents integrated with custom knowledge bases.
+
+
+---
+
+## Project 9: Scalable AI Expert Bot (RAG on Supabase + Postgres Memory)
+
+### 📝 Project Overview
+This project demonstrates a truly robust and scalable AI agent built in n8n. This isn't just a simple chatbot; it's an "AI Expert" designed to learn a specific knowledge base (in this case, "The Rules of Golf" PDF) and answer user questions with perfect accuracy.
+
+What makes this build powerful is its "enterprise-grade" architecture:
+1.  **Supabase Vector Store:** It uses Supabase for its RAG pipeline, a powerful open-source database that handles both data storage and vector search.
+2.  **Persistent Postgres Memory:** It uses a dedicated `Postgres Chat Memory` node, allowing the agent to remember conversations permanently and across multiple sessions, a feature crucial for real-world business applications.
+
+### 🛠️ Tools Used
+* **n8n:** The central automation platform.
+* **Supabase:** Used as the primary vector database for both document ingestion and as a retrieval tool for the AI agent.
+* **OpenAI:** Used for generating embeddings (`text-embedding-3-small`) and powering the chat model.
+* **Postgres Chat Memory:** For storing conversation history in an external database, enabling true stateful conversation.
+* **Default Data Loader:** To load, process, and split the source PDF document.
+
+### ✨ Key Features
+* **Dual-Purpose Workflow:** A clean, unified workflow that handles both data ingestion (learning the PDF via a manual trigger) and live chat Q&A.
+* **Supabase RAG Pipeline:** The agent retrieves factual information ("rules of golf") directly from the Supabase vector database to provide accurate, fact-based answers.
+* **Scalable Memory:** By using a Postgres database for memory instead of temporary session memory, this agent can handle thousands of users and build long-term context.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![AI Chatbot Workflow (n8n, OpenAI, Supabase).png](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/AI%20Chatbot%20Workflow%20(n8n,%20OpenAI,%20Supabase).png?raw=true)
+
+**Workflow Code File**
+
+[Click here for the workflow code (AI Chatbot Workflow (n8n, OpenAI, Supabase).json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/AI%20Chatbot%20Workflow%20(n8n%2C%20OpenAI%2C%20Supabase).json)
+
+### 🧠 Challenges & Learnings
+The most powerful automations are not just smart, they are robust. The key learning here was integrating **Supabase** as an all-in-one database and vector store, which is a highly scalable alternative to other tools. Combining this with **persistent Postgres memory** creates an enterprise-ready AI assistant that is both intelligent (RAG) and stateful (remembers conversations).
