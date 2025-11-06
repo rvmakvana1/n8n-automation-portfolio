@@ -327,3 +327,43 @@ What makes this build powerful is its "enterprise-grade" architecture:
 
 ### 🧠 Challenges & Learnings
 The most powerful automations are not just smart, they are robust. The key learning here was integrating **Supabase** as an all-in-one database and vector store, which is a highly scalable alternative to other tools. Combining this with **persistent Postgres memory** creates an enterprise-ready AI assistant that is both intelligent (RAG) and stateful (remembers conversations).
+
+
+---
+
+## Project 10: AI Real Estate Assistant (RAG on Structured Excel Data)
+
+### 📝 Project Overview
+This project is a powerful AI assistant built for the **real estate industry**, demonstrating how to build a RAG agent on structured business data, not just simple text files.
+
+This agent acts as a 24/7 virtual property expert. It answers specific user questions about property listings (e.g., "How many bedrooms?", "What is the price?") by retrieving facts from a **Supabase Vector Store**.
+
+What makes this project unique is its data ingestion pipeline: it automatically "learns" from **structured Excel (XLS) files** added to Google Drive. It uses a **custom JavaScript node** to properly format each row of data before embedding it, ensuring the AI can understand and retrieve complex property details accurately.
+
+### 🛠️ Tools Used
+* **n8n:** The central automation platform.
+* **Google Drive Trigger:** To automatically detect and ingest new property listing files.
+* **Extract from File:** To read data directly from Excel (XLS) files.
+* **Code in JavaScript:** To iterate over Excel rows, clean, and format the structured data for the AI.
+* **Supabase Vector Store:** The vector database for both storing property data and RAG retrieval.
+* **OpenAI:** Used for generating embeddings and powering the chat model.
+* **Simple Memory:** To maintain conversational context.
+
+### ✨ Key Features
+* **RAG on Structured Data:** Moves beyond basic PDFs to handle structured Excel data, which is how most businesses store their information.
+* **Custom Data Transformation:** Uses **JavaScript** to ensure data is clean and perfectly formatted before AI ingestion, guaranteeing high-quality answers.
+* **High-Accuracy Answers:** The agent provides fact-based answers about properties by retrieving data directly from the Supabase vector store.
+* **Automated Knowledge Updates:** The agent's knowledge base expands automatically as new property listing files are added to Google Drive.
+
+### 🖼️ Workflow Visual & Code
+
+**Workflow Screenshot**
+
+![AI Real Estate Chatbot Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-real-estate-rag-agent-screenshot.png?raw=true)
+
+**Workflow Code File**
+
+[Click here for the workflow code (ai-real-estate-rag-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-real-estate-rag-agent-json.json)
+
+### 🧠 Challenges & Learnings
+The most interesting challenge was handling *structured data* from an Excel file, not just simple text. This required using a custom JavaScript node to iterate over each property listing and format it into clean, embeddable text. This proves the RAG pipeline can be adapted for any business data, not just PDFs.
