@@ -394,7 +394,7 @@ A manager can type natural language commands (e.g., "Update Fernanda's budget" o
 
 ### 🖼️ Workflow Visuals & Code
 
-**(Optional) Frontend Dashboard by Lovable**
+**Frontend Dashboard by Lovable**
 ![Headshot Studio Dashboard UI](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-business_lovable-dashboard-ui.png?raw=true)
 
 **n8n Workflow (The Backend "Brain")**
