@@ -367,3 +367,41 @@ What makes this project unique is its data ingestion pipeline: it automatically 
 
 ### 🧠 Challenges & Learnings
 The most interesting challenge was handling *structured data* from an Excel file, not just simple text. This required using a custom JavaScript node to iterate over each property listing and format it into clean, embeddable text. This proves the RAG pipeline can be adapted for any business data, not just PDFs.
+
+
+---
+
+## Project 11: AI-Powered Business Dashboard (n8n + Google Sheets + Lovable)
+
+### 📝 Project Overview
+This project is a powerful, custom-built internal tool that allows a business manager to run their entire operation from a single, intelligent chat interface. It combines a **Lovable** dashboard (frontend), a **Google Sheet** (database), and an **n8n AI Agent** (backend).
+
+A manager can type natural language commands (e.g., "Update Fernanda's budget" or "Send Martin an email") into the dashboard chat. The n8n agent receives this via a webhook, understands the command, uses its "tools" to perform the action (like updating the Google Sheet or sending a Gmail), and then confirms the task is complete, all within the chat.
+
+### 🛠️ Tools Used
+* **n8n:** The central automation "brain" that hosts the AI Agent and manages the logic.
+* **Lovable.dev:** Used to create the beautiful, real-time analytics dashboard and chat interface.
+* **Google Sheets:** Acts as the live database, storing all client and project data.
+* **OpenAI Chat Model:** The AI model that understands user commands and decides which tool to use.
+* **Gmail Node:** Used as a tool by the agent to send emails directly from the chat interface.
+* **Webhook:** The real-time connection between the Lovable chatbot and the n8n agent.
+
+### ✨ Key Features
+* **AI-Powered Dashboard:** The agent turns a static dashboard into an interactive "operating system."
+* **Natural Language Commands:** The manager doesn't need to know n8n or Google Sheets; they just need to chat. [cite_start]The agent (with its clear system prompt ) does the rest.
+* **Multi-Tool Capability:** The agent can intelligently choose between reading data, updating data, or sending emails, all from one command.
+* **Real-time Sync:** Any changes made by the agent in the Google Sheet are instantly reflected on the Lovable dashboard.
+
+### 🖼️ Workflow Visuals & Code
+
+**(Optional) Frontend Dashboard by Lovable**
+![Headshot Studio Dashboard UI](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-business_lovable-dashboard-ui.png?raw=true)
+
+**n8n Workflow (The Backend "Brain")**
+![AI Business Dashboard Agent Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-business-dashboard-agent-screenshot.png?raw=true)
+
+**n8n Workflow Code File**
+[Click here for the workflow code (ai-business-dashboard-agent.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/ai-business-dashboard-agent.json)
+
+### 🧠 Challenges & Learnings
+The most powerful part of this project was creating a seamless loop between a user-friendly frontend (Lovable) and a powerful backend (n8n). [cite_start]The key was designing a clear system prompt  and reliable tools (like `Get Rows` and `Update Rows`) that allow the AI to safely and accurately manage a live database (Google Sheets) simply through chat.
