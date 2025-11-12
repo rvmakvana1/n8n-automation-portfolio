@@ -1,0 +1,311 @@
+{
+  "name": "Headshot Studio Dashboard",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "=You are an AI agent that manages information in a Google Sheet. Your job is to read incoming chat messages, review the current sheet data, and update any relevant information as needed.\n\n## Core Process\n\n1. **Read the message**: Understand what the user is asking for or reporting\n2. **Review the sheet**: Use the read tool to get current data from all relevant sections\n3. **Analyze**: Determine what information needs to be updated, added, or modified\n4. **Update**: Use the update tool to make necessary changes\n5. **Confirm**: Briefly explain what you updated\n\n## Available Tools\n\n- `read_google_sheet`: Retrieves current data from the Google Sheet\n- `update_google_sheet`: Updates specific cells or ranges in the sheet\nGmail send message tool: send the message when ever the user ask for\n\n## Guidelines\n\n- Always read the sheet first before making any updates\n- Only update information that has actually changed or is newly provided\n- Be precise with your updates – don’t modify unrelated data\n- If the message is unclear, ask for clarification before updating\n- Provide a brief summary of what you updated after making changes\n## Response Format\n\n1. Read the current sheet data\n2. Identify what needs updating based on the message\n3. Make the necessary updates\n4. Confirm: \"Updated [specific information] in the sheet.\"\n\nStay focused, efficient, and accurate in your updates.\nWhatever the message you will be sending will be from the side of Ranjit Makwana"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        224,
+        -32
+      ],
+      "id": "23013cf3-0cdb-47e5-854a-4288f9192e5d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        160
+      ],
+      "id": "edaa270b-9cef-43fc-a9d5-f0c099cd00f5",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "XgPhIsFUprE8zMnY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xcXlYVBSJOqCQ18aCDoYcvRvKHCop_aXw4ZHS7enj70",
+          "mode": "list",
+          "cachedResultName": "Prospects",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xcXlYVBSJOqCQ18aCDoYcvRvKHCop_aXw4ZHS7enj70/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xcXlYVBSJOqCQ18aCDoYcvRvKHCop_aXw4ZHS7enj70/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        160
+      ],
+      "id": "2804db73-2323-4d9b-ace9-dff25604ad38",
+      "name": "Get Rows",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TG2xys0V3y27Jh0r",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xcXlYVBSJOqCQ18aCDoYcvRvKHCop_aXw4ZHS7enj70",
+          "mode": "list",
+          "cachedResultName": "Prospects",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xcXlYVBSJOqCQ18aCDoYcvRvKHCop_aXw4ZHS7enj70/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xcXlYVBSJOqCQ18aCDoYcvRvKHCop_aXw4ZHS7enj70/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Clients": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Clients__using_to_match_', ``, 'string') }}",
+            "No. of Headshots": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('No__of_Headshots', ``, 'string') }}",
+            "Price": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Price', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "Email": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Email', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Clients"
+          ],
+          "schema": [
+            {
+              "id": "Clients",
+              "displayName": "Clients",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "No. of Headshots",
+              "displayName": "No. of Headshots",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        160
+      ],
+      "id": "b180620b-c2d0-497d-be44-71b58a70d5b4",
+      "name": "Update Rows",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TG2xys0V3y27Jh0r",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sheetacess",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        -32
+      ],
+      "id": "ada93b8e-3a11-4b05-980f-d67352911473",
+      "name": "Webhook",
+      "webhookId": "9bb90020-1312-4840-ba89-f11fee3bb445"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        672,
+        -32
+      ],
+      "id": "e7c45b89-3e20-4e0b-bce0-791dd912a201",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        144
+      ],
+      "id": "40fa6f68-3e3a-4a97-9d58-dbaec97a0125",
+      "name": "Send a message in Gmail",
+      "webhookId": "9fc688c2-a31d-4964-90a0-55dd847d262d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "N7yfZw9eq1qM5OKo",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Rows": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Rows": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "458d1ea6-ec4b-4bcb-9f76-9db732e78316",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bce5f1ac283a60920eb6f312dfe7bd53d21a942a8f6edee8b0006b65adda23f7"
+  },
+  "id": "voJJCAa6hqm7pNVa",
+  "tags": []
+}
