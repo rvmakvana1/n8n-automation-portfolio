@@ -433,7 +433,7 @@ The system watches a **Google Sheet** for new bookings. As soon as a booking is 
 ![Salon Booking Workflow Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/salon%20booking%20.png?raw=true)
 
 **Workflow Code File**
-[Click here to view the n8n workflow code  https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Salon%20Booking%20Workflow.json]
+[https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Salon%20Booking%20Workflow.json]
 
 ### 🧠 Challenges & Learnings
 The main challenge was handling the timing for reminders effectively. I learned how to use the **Wait Node** to pause execution without stopping the workflow. I also learned to handle data types correctly, converting phone numbers from Google Sheets (Numbers) to the format required by Messaging APIs (Strings) using expressions like `.toString()`.
