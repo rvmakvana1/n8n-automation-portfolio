@@ -405,3 +405,35 @@ A manager can type natural language commands (e.g., "Update Fernanda's budget" o
 
 ### 🧠 Challenges & Learnings
 The most powerful part of this project was creating a seamless loop between a user-friendly frontend (Lovable) and a powerful backend (n8n). [cite_start]The key was designing a clear system prompt  and reliable tools (like `Get Rows` and `Update Rows`) that allow the AI to safely and accurately manage a live database (Google Sheets) simply through chat.
+
+
+## Project 12: Salon Booking Automation System (Google Sheets + Telegram)
+
+### 📝 Project Overview
+This workflow automates the entire appointment management process for a salon. It is designed to solve the problem of "no-shows" (missed appointments) and manual follow-ups.
+
+The system watches a **Google Sheet** for new bookings. As soon as a booking is entered, **n8n** instantly sends a personalized confirmation message to the client via **Telegram**. It then intelligently waits for a specific time and sends an automated reminder message right before the appointment, ensuring the client arrives on time.
+
+### 🛠️ Tools Used
+* **n8n:** The core automation platform managing the logic and timing.
+* **Google Sheets:** Acts as the booking database and CRM where staff enters details.
+* **Telegram Bot API:** Used for sending instant notifications and reminders (Demo version for WhatsApp).
+* **Wait Node:** Crucial for handling the time delay between the confirmation and the reminder.
+
+### ✨ Key Features
+* **Real-Time Trigger:** The workflow activates instantly when a new row is added to Google Sheets.
+* **Instant Confirmation:** Sends a personalized message (e.g., "Hello Ranjit...") immediately after booking.
+* **Smart Delays:** Uses the `Wait` node to pause the workflow and execute the next step at the exact right time.
+* **Automated Reminders:** Automatically sends a follow-up reminder to the client, reducing manual work.
+* **Error Handling:** ensures mobile numbers are formatted correctly as strings for the API.
+
+### 🖼️ Workflow Visuals & Code
+
+**Workflow Screenshot**
+![Salon Booking Workflow Screenshot](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/salon%20booking%20.png?raw=true)
+
+**Workflow Code File**
+[Click here to view the n8n workflow code  https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Salon%20Booking%20Workflow.json]
+
+### 🧠 Challenges & Learnings
+The main challenge was handling the timing for reminders effectively. I learned how to use the **Wait Node** to pause execution without stopping the workflow. I also learned to handle data types correctly, converting phone numbers from Google Sheets (Numbers) to the format required by Messaging APIs (Strings) using expressions like `.toString()`.
