@@ -1,0 +1,155 @@
+{
+  "name": "Salon Booking Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1-QioewdoizzGkp_TPPergao0dw3hoqRqjp0GGacN5fs",
+          "mode": "list",
+          "cachedResultName": "Salon Booking",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-QioewdoizzGkp_TPPergao0dw3hoqRqjp0GGacN5fs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-QioewdoizzGkp_TPPergao0dw3hoqRqjp0GGacN5fs/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        -16
+      ],
+      "id": "d8051a42-9376-41b8-800a-f7885c2b980d",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "XhU1DWioM2wZJYwd",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -96,
+        -16
+      ],
+      "id": "6e2c728d-ef01-4c88-90b1-97cc6fe2d330",
+      "name": "Wait",
+      "webhookId": "b4bfe4a1-0437-4e81-a1e2-5b57948110ab"
+    },
+    {
+      "parameters": {
+        "chatId": "5107245698",
+        "text": "=Hello {{ $json.Name }} your booking for {{ $json['Appointment Date'] }} is confirmed!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -288,
+        -16
+      ],
+      "id": "c22601e5-d0db-46d7-8457-18f75dcdbe52",
+      "name": "Send Booking Confirmation",
+      "webhookId": "9c2f5bf6-e7cd-47ca-b87f-793569027a1c",
+      "credentials": {
+        "telegramApi": {
+          "id": "mkEHDFdLtvdMWxPf",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5107245698",
+        "text": "=Reminder: Hi {{ $('Google Sheets Trigger').item.json.Name }} , your appointment is starting soon!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        112,
+        -16
+      ],
+      "id": "d03744c2-d14a-4b00-bde4-26ee59f47abc",
+      "name": "Send Appointment Reminder",
+      "webhookId": "9c2f5bf6-e7cd-47ca-b87f-793569027a1c",
+      "credentials": {
+        "telegramApi": {
+          "id": "mkEHDFdLtvdMWxPf",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send Booking Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send Appointment Reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Booking Confirmation": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6460a7a5-9097-45f3-9680-a6496b2965d1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c0dcc59e83a4b2a1a82c423d50a7c63ef216e64604f5275053218c3627fdc1f0"
+  },
+  "id": "NIFduD8n2d1XVq4f",
+  "tags": []
+}
