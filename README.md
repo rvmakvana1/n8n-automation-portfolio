@@ -437,3 +437,54 @@ The system watches a **Google Sheet** for new bookings. As soon as a booking is 
 
 ### 🧠 Challenges & Learnings
 The main challenge was handling the timing for reminders effectively. I learned how to use the **Wait Node** to pause execution without stopping the workflow. I also learned to handle data types correctly, converting phone numbers from Google Sheets (Numbers) to the format required by Messaging APIs (Strings) using expressions like.
+
+
+# 🚀 Full Lead Automation & Calendar Sync (n8n + Telegram Prototype)
+
+---
+
+## 📝 Project Overview (Problem & Solution)
+
+### 🔴 The Problem: Lost Revenue & Manual Chaos
+Businesses often struggle with losing qualified leads because:
+* **Slow Response:** Website form submissions require manual follow-up, causing delays beyond the crucial 3-second window.
+* **Scheduling Friction:** Manually coordinating bookings and creating calendar events for leads takes time and introduces human error.
+* **Language Barrier:** Sending generic English messages to local clients (e.g., Dutch speakers) results in poor engagement.
+
+### ✅ The Solution: Instant, Intelligent Automation
+This n8n workflow eliminates lost leads and administrative work by:
+* Ensuring a **sub-3 second response time** after form submission using the `Respond to Webhook` node.
+* Utilizing **smart language detection** (Dutch/English) for effective communication.
+* Automatically managing follow-ups and scheduling via Google Calendar sync.
+
+---
+### ✨ Key Features
+
+* **⚡ Instant Trigger:** Webhook responds within 3 seconds, allowing the website form to submit quickly.
+* **🌐 Multi-Language Logic:** Automatically detects the lead's nationality/language (checking for +31 country code) and sends a personalized message in the correct language.
+* **📅 Google Calendar Sync:** Instantly creates a named event in the calendar using the lead data.
+* **⏰ Revenue Saver (Follow-up):** Uses a built-in `Wait Node` logic to automatically chase and send a follow-up message if the lead does not respond within 24 hours.
+
+### 🛠️ Tech Stack
+
+* **Workflow Engine:** n8n
+* **Trigger:** Webhooks
+* **Logic:** IF Node (Language Detection)
+* **Messaging:** Telegram API (Prototype for WhatsApp/Meta Cloud API)
+* **Scheduling:** Google Calendar
+
+---
+
+## 🧠 Challenges & Learnings (Debugging Real-World Issues)
+
+Documenting challenges is key to showing problem-solving skills. Here are the issues solved during testing:
+
+* **1. Webhook Timeout:** The initial workflow was too slow because it waited for the Calendar event to complete before responding.
+    * **Solution:** Implemented the **`Respond to Webhook`** node immediately after the trigger to ensure an instant 200 OK response, letting the workflow continue processing in the background.
+* **2. Calendar Title Mapping:** The Google Calendar node failed to populate the event title (showed "(No title)") even though the name variable was correct.
+    * **Solution:** Manually used the **"Add Field"** option to explicitly define and map the **`Summary`** field using an expression (`Meeting with {{name}}`).
+
+### 🖼️ Project Assets
+
+* **Workflow Screenshot:** **[View Visual Logic](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(DutchEnglish%20+%20Calendar%20+%20FollowUp).png?raw=true)**
+* **Workflow JSON Code:** **[Download Code (.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(Dutch_English%20%2B%20Calendar%20%2B%20FollowUp).json)**
