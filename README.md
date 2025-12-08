@@ -439,11 +439,10 @@ The system watches a **Google Sheet** for new bookings. As soon as a booking is 
 The main challenge was handling the timing for reminders effectively. I learned how to use the **Wait Node** to pause execution without stopping the workflow. I also learned to handle data types correctly, converting phone numbers from Google Sheets (Numbers) to the format required by Messaging APIs (Strings) using expressions like.
 
 
-# 🚀 Full Lead Automation & Calendar Sync (n8n + Telegram Prototype)
+## Project 13 🚀 Full Lead Automation & Calendar Sync (n8n + Telegram Prototype)
 
----
 
-## 📝 Project Overview (Problem & Solution)
+### 📝 Project Overview (Problem & Solution)
 
 ### 🔴 The Problem: Lost Revenue & Manual Chaos
 Businesses often struggle with losing qualified leads because:
@@ -457,7 +456,6 @@ This n8n workflow eliminates lost leads and administrative work by:
 * Utilizing **smart language detection** (Dutch/English) for effective communication.
 * Automatically managing follow-ups and scheduling via Google Calendar sync.
 
----
 ### ✨ Key Features
 
 * **⚡ Instant Trigger:** Webhook responds within 3 seconds, allowing the website form to submit quickly.
@@ -473,7 +471,6 @@ This n8n workflow eliminates lost leads and administrative work by:
 * **Messaging:** Telegram API (Prototype for WhatsApp/Meta Cloud API)
 * **Scheduling:** Google Calendar
 
----
 
 ## 🧠 Challenges & Learnings (Debugging Real-World Issues)
 
