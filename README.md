@@ -482,6 +482,5 @@ Documenting challenges is key to showing problem-solving skills. Here are the is
     * **Solution:** Manually used the **"Add Field"** option to explicitly define and map the **`Summary`** field using an expression (`Meeting with {{name}}`).
 
 ### 🖼️ Project Assets
-
-* **Workflow Screenshot:** **[https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(DutchEnglish%20+%20Calendar%20+%20FollowUp).png?raw=true]
+* **Workflow Screenshot:** [View Visual Logic](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(DutchEnglish%20+%20Calendar%20+%20FollowUp).png?raw=true)
 * **Workflow JSON Code:** **[Download Code (.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(Dutch_English%20%2B%20Calendar%20%2B%20FollowUp).json)**
