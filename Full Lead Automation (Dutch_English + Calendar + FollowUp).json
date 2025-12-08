@@ -1,0 +1,272 @@
+{
+  "name": "Full Lead Automation (Dutch/English + Calendar + FollowUp)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-form",
+        "options": {}
+      },
+      "id": "2865da4e-e765-447e-8b4a-0a3bb170d25e",
+      "name": "Webhook (Website Form)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        64
+      ],
+      "webhookId": "a923f814-d586-451f-b04e-8ba56cfa379e"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "99d5d7a5-6f71-49ce-9ec7-db4d1cadc449",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.phone }}",
+              "operation": "startsWith",
+              "value2": "+31"
+            }
+          ]
+        }
+      },
+      "id": "1f8f6377-5c23-4319-8a8a-d023434fbbdd",
+      "name": "Check Language (+31?)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "5107245698",
+        "text": "=Hallo {{ $('Webhook (Website Form)').item.json.body.name }}! Bedankt voor je aanvraag. We nemen snel contact op.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "4fbf918c-a7ad-4a1f-9447-a9f22c97fb62",
+      "name": "Send Dutch Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -48,
+        -48
+      ],
+      "webhookId": "aa46a9ea-3bfb-4321-84e8-1f94f36fb5ed",
+      "credentials": {
+        "telegramApi": {
+          "id": "mkEHDFdLtvdMWxPf",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5107245698",
+        "text": "=Hi {{ $('Webhook (Website Form)').item.json.body.name }}! Thanks for your inquiry. We will contact you shortly.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "ccd9b836-c4ad-4712-a1d1-1a47222babd0",
+      "name": "Send English Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -48,
+        176
+      ],
+      "webhookId": "d9ae2973-3b51-47b5-82ce-c87bff085fa9",
+      "credentials": {
+        "telegramApi": {
+          "id": "mkEHDFdLtvdMWxPf",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "ranveermotivation@gmail.com",
+          "mode": "list",
+          "cachedResultName": "ranveermotivation@gmail.com"
+        },
+        "start": "={{ $('Webhook (Website Form)').item.json.body.appointment_date }}",
+        "end": "={{ $('Webhook (Website Form)').item.json.body.appointment_date }}",
+        "additionalFields": {
+          "description": "=Phone: {{ $('Webhook (Website Form)').item.json.body.phone }}",
+          "summary": "=Meeting With  {{ $json.result.chat.first_name }}"
+        }
+      },
+      "id": "cb13177f-8427-449e-85a9-9e627aa65fc3",
+      "name": "Create Calendar Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        176,
+        64
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "xBIeN4Bg2qUPGeOY",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "7a1c597b-c861-4af3-b4a3-81c7046511d9",
+      "name": "Wait (Simulate 24h)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        400,
+        64
+      ],
+      "webhookId": "1ce1834c-d105-44c3-b389-59954bd144ca"
+    },
+    {
+      "parameters": {
+        "chatId": "5107245698",
+        "text": "=🤖 Follow-up: Hi {{ $('Webhook (Website Form)').item.json.body.name }}, are you still interested? Let us know!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "b84c0a4c-44b8-4e23-a96f-3cea4d5f8b10",
+      "name": "Send Follow-Up",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        64
+      ],
+      "webhookId": "47cfc2e3-b693-4539-a8ad-04e1f23626ca",
+      "credentials": {
+        "telegramApi": {
+          "id": "mkEHDFdLtvdMWxPf",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook (Website Form)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Language (+31?)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Language (+31?)": {
+      "main": [
+        [
+          {
+            "node": "Send Dutch Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send English Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Dutch Message": {
+      "main": [
+        [
+          {
+            "node": "Create Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send English Message": {
+      "main": [
+        [
+          {
+            "node": "Create Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "Wait (Simulate 24h)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (Simulate 24h)": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-Up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b1192340-0d71-4323-b5d3-e9b37cc177fb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c0dcc59e83a4b2a1a82c423d50a7c63ef216e64604f5275053218c3627fdc1f0"
+  },
+  "id": "wAoQ6Fz63AMQy4qj",
+  "tags": []
+}
