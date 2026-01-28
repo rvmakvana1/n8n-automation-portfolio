@@ -523,3 +523,64 @@ The complete automation logic for this migration system can be found here:
 * [📄 View Workflow Code (JSON)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Stock%20Market%20Telegram%20Bot%20.json)
 
 ---
+## Project 15 🧠 AI Second Brain & Memory Assistant (with Reminders)
+
+An intelligent automation system built with **n8n** that acts as a personal "Second Brain." It captures voice/text notes, stores them permenantly, and even schedules tasks in Google Calendar automatically using AI.
+
+This project consists of **two interconnected workflows** working together to handle memories and actions.
+
+---
+
+## ✨ Key Features
+
+* **🗣️ Voice-to-Text Support:** Integrated **OpenAI Whisper** to handle Voice Notes accurately (supports Hinglish/Hindi).
+* **🧠 Long-Term Memory (RAG):** Uses **Pinecone Vector Database** to store and retrieve user notes and context.
+* **📅 Smart Reminders & Scheduling:** The AI detects time-based commands (e.g., "Remind me tomorrow at 10 AM to call Raj") and automatically creates events in **Google Calendar**.
+* **🤖 Context-Aware Answers:** The AI Agent answers questions based *only* on your personal stored data.
+* **📂 Data Backup:** Automatically logs every transaction/note into **Google Sheets** for safety.
+* **💬 Telegram Interface:** Serves as a user-friendly frontend for all interactions.
+
+---
+
+## 🛠️ Tech Stack Used
+
+* **Workflow Automation:** [n8n](https://n8n.io/)
+* **AI Model:** OpenAI (GPT-4o / GPT-3.5-turbo) & Whisper
+* **Vector Database:** Pinecone
+* **Productivity & Database:** Google Calendar & Google Sheets
+* **Interface:** Telegram Bot API
+
+---
+
+## 🚀 How It Works (The Dual-Workflow System)
+
+The system uses an AI Router to decide the user's intent:
+
+1.  **If it's a Memory/Note:** The data is embedded and stored in Pinecone for future retrieval.
+2.  **If it's a Reminder/Task:** The second workflow kicks in, extracts the date/time using AI, and books it in Google Calendar.
+3.  **If it's a Question:** The AI searches past notes in Pinecone to provide a precise answer.
+
+---
+
+## 📸 Workflow Visuals
+
+### Workflow 1: Main Logic, Memory & RAG
+*(Handles user input, routing, saving notes, and answering questions)*
+
+![Main Workflow - Memory & RAG](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Second%20Brain%20App.png?raw=true)
+
+
+### Workflow 2: Google Calendar & Reminders Automation
+*(Handles scheduling tasks and setting reminders automatically)*
+
+![Second Workflow - Calendar Automation](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Second%20Brain%20Workflow%202.png?raw=true)
+
+---
+
+## 📥 Download Workflows
+
+You can import these project files directly into your n8n instance.
+
+[📄 Download JSON Files (ZIP)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Second%20Brain%20App%20-%20Core%20Logic.json)
+
+---
