@@ -489,32 +489,37 @@ Here you can view the complete workflow and download the code:
 * **Workflow JSON Code:** [Download Code (.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(Dutch_English%20%2B%20Calendar%20%2B%20FollowUp).json)
 
 
-## Project 14 📈 Automated Stock Market Bot & Lead Generation System
+# 🚀 Telegram Subscriber Migration & Data Capture System
 
-A smart Telegram automation workflow built with **n8n** that captures user data before allowing them to join a premium channel.
+This project was designed to solve a critical **Data Retention Challenge** for a client with over **300,000 subscribers**.
 
-## 🚀 Project Overview
+## 📌 Project Context (The Problem)
+The client wanted to migrate their massive audience of **300k+ users** from an existing database to a **New Premium Channel**.
 
-**The Problem:**
-Direct Telegram channel links do not allow owners to collect User IDs for future retargeting or broadcasting.
+However, simply sharing a direct invite link was not an option because:
+1.  **Data Loss:** Direct links do not reveal *who* joined.
+2.  **No Tracking:** The client wanted to ensure every single user who moved to the new channel was captured in a database for future communication.
 
-**The Solution:**
-I built a "Gatekeeper" bot that ensures 100% data capture without losing user interest.
-* **Smart UI:** Designed a custom "⚠️ ACTION REQUIRED" start screen to guide users effectively.
-* **Lead Capture:** Instantly logs User ID, Name, and Date into **Google Sheets** when they click 'Start'.
-* **Auto-Approval:** Immediately replies with the final "Join Channel" link upon activation.
+## 💡 The Solution (The "Bridge Bot")
+I developed an automated **n8n Workflow** that acts as a smart bridge between the old subscribers and the new channel.
+
+Instead of a direct link, users are sent to this bot. The workflow ensures:
+1.  **Seamless Migration:** Users click the bot link -> Click 'Start' -> Get the Channel Link.
+2.  **100% Data Capture:** The moment a user interacts, their **User ID, Name, and Date** are automatically saved to **Google Sheets**.
+3.  **Zero Friction:** The bot instantly creates a personalized "Join Button" so the user experience remains fast and smooth.
 
 ## 📸 Project Demo
+*The interface where users are approved and given access to the channel.*
 
 ![Bot Interface](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Stock%20Market%20Telegram%20Bot.png?raw=true)
 
 ## 🛠️ Tech Stack
-* **n8n** (Workflow Automation)
-* **Telegram Bot API**
-* **Google Sheets Integration**
+* **n8n** (Backend Automation Logic)
+* **Telegram Bot API** (User Interface)
+* **Google Sheets** (Database for 300k+ Leads)
 
 ## 📂 Workflow Code
-The complete automation logic and node setup can be found in the JSON file below:
+The complete automation logic for this migration system can be found here:
 * [📄 View Workflow Code (JSON)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Stock%20Market%20Telegram%20Bot%20.json)
 
 ---
