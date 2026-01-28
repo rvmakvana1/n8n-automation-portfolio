@@ -487,3 +487,34 @@ Here you can view the complete workflow and download the code:
 
 * **Workflow Screenshot:** [View Visual Logic](https://raw.githubusercontent.com/rvmakvana1/n8n-automation-portfolio/refs/heads/main/Full%20Lead%20Automation%20(DutchEnglish%20%2B%20Calendar%20%2B%20FollowUp).png)
 * **Workflow JSON Code:** [Download Code (.json)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Full%20Lead%20Automation%20(Dutch_English%20%2B%20Calendar%20%2B%20FollowUp).json)
+
+
+## Project 14 📈 Automated Stock Market Bot & Lead Generation System
+
+A smart Telegram automation workflow built with **n8n** that captures user data before allowing them to join a premium channel.
+
+## 🚀 Project Overview
+
+**The Problem:**
+Direct Telegram channel links do not allow owners to collect User IDs for future retargeting or broadcasting.
+
+**The Solution:**
+I built a "Gatekeeper" bot that ensures 100% data capture without losing user interest.
+* **Smart UI:** Designed a custom "⚠️ ACTION REQUIRED" start screen to guide users effectively.
+* **Lead Capture:** Instantly logs User ID, Name, and Date into **Google Sheets** when they click 'Start'.
+* **Auto-Approval:** Immediately replies with the final "Join Channel" link upon activation.
+
+## 📸 Project Demo
+
+![Bot Interface](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Stock%20Market%20Telegram%20Bot.png?raw=true)
+
+## 🛠️ Tech Stack
+* **n8n** (Workflow Automation)
+* **Telegram Bot API**
+* **Google Sheets Integration**
+
+## 📂 Workflow Code
+The complete automation logic and node setup can be found in the JSON file below:
+* [📄 View Workflow Code (JSON)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Stock%20Market%20Telegram%20Bot%20.json)
+
+---
