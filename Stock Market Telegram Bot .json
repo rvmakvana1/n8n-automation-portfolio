@@ -1,0 +1,237 @@
+{
+  "name": "Stock Market Telegram Bot 2",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "0cf0e618-2c3f-416e-84e3-735e8e9011ee",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        736,
+        64
+      ],
+      "webhookId": "2b46485e-3fc1-4e75-b1e9-288324de7abb",
+      "credentials": {
+        "telegramApi": {
+          "id": "96C23CekazbiABRW",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "Date",
+              "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+            },
+            {
+              "name": "First Name",
+              "value": "={{ $json.message.from.first_name }}"
+            },
+            {
+              "name": "Last Name",
+              "value": "={{ $json.message.from.last_name }}"
+            },
+            {
+              "name": "User ID",
+              "value": "={{ $json.message.from.id.toString() }}"
+            },
+            {
+              "name": "Username",
+              "value": "={{ $json.message.from.username ? $json.message.from.username : 'No Username' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "33302868-0138-4bb8-8677-10ae6b5464b2",
+      "name": "Prepare Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        960,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1YEawB4w-qMQA3qYRYhK3JoR8EDKNqHYf9eezguCJjPw",
+          "mode": "list",
+          "cachedResultName": "Telegram Bot Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YEawB4w-qMQA3qYRYhK3JoR8EDKNqHYf9eezguCJjPw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YEawB4w-qMQA3qYRYhK3JoR8EDKNqHYf9eezguCJjPw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $json.Date }}",
+            "Name": "={{ $json['First Name'] }} {{ $json['Last Name'] }}",
+            "User ID": "={{ $json['User ID'] }}",
+            "Username": "={{ $json.Username }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User ID",
+              "displayName": "User ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "591c45c2-7474-4681-baaf-3e851f0f97ed",
+      "name": "Save to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1184,
+        64
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "VHKvJMA67vCMKtrO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $node['Telegram Trigger'].json.message.chat.id }}",
+        "text": "✅ **Request Approved!**\n\nYour free **Stock Market Tips** account has been successfully activated.\n\n👇 **Click the button below to JOIN our Premium Channel:**",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "JOIN CHANNEL NOW",
+                    "additionalFields": {
+                      "url": "https://t.me/StockDemoRanjit123"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "id": "55efd85a-cfb3-4a26-85e5-d2e265665f43",
+      "name": "Send Reply with Link",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        64
+      ],
+      "webhookId": "ed53fc66-1c2b-42ce-8648-a8f9dba39f72",
+      "credentials": {
+        "telegramApi": {
+          "id": "96C23CekazbiABRW",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Send Reply with Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "752b7a3f-fc4e-435a-9c45-94f300c03f74",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dfbccd06b3f6541766640391edabb69489f6d36b5960b9fb13b442132794cb3c"
+  },
+  "id": "Pkj9dbu7IkE0FYGXRCIbA",
+  "tags": []
+}
