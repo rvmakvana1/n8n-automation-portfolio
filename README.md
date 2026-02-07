@@ -584,3 +584,80 @@ You can import these project files directly into your n8n instance.
 [📄 Download JSON Files (ZIP)](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/Second%20Brain%20App%20-%20Core%20Logic.json)
 
 ---
+
+## Project 16 # 🚀 FinFlow AI | Smart Finance Agent
+
+> **An autonomous financial assistant that understands "Hinglish," remembers context, and never makes a math error.**
+
+![Architecture](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow_Core_Orchestrator.png?raw=true)
+
+## 👋 About The Project
+
+Hi, I'm **Ranjit Makvana**.
+
+We all know that standard LLMs (like ChatGPT) are great at talking but **terrible at Math**. If you ask them to calculate a long expense sheet, they often hallucinate the numbers.
+
+I built **FinFlow AI** to solve this problem. It is not just a chatbot; it is an intelligent **Agentic Workflow** built on **n8n**. It acts as my personal CFO that lives in Telegram, tracks my expenses in Google Sheets, remembers my debts using Vector Database (Pinecone), and sends me timely reminders.
+
+## 💡 The "Why?" (Problem vs. Solution)
+
+| The Problem with Normal Chatbots ❌ | How FinFlow AI Solves It ✅ |
+| :--- | :--- |
+| **Math Hallucinations:** LLMs guess numbers. | **Tool Calling:** It uses a calculator tool for 100% accuracy. |
+| **Context Blindness:** Can't tell the difference between "Paid to Ravi" vs "Received from Ravi". | **Semantic Understanding:** Understands the direction of money (Credit/Debit) even in mixed Hinglish. |
+| **Short Term Memory:** Forgets that I borrowed money last month. | **Long Term Memory:** Uses **Pinecone Vector DB** to recall past transactions. |
+
+---
+
+## ⚙️ Technical Architecture
+
+I have divided the system into **Two Core Workflows** to keep the architecture clean and scalable:
+> **[📂 Download Workflow JSON](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow_Core_Orchestrator.json)**
+
+### 1. 🧠 FinFlow_Core_Orchestrator (The Brain)
+This is the main backend logic that handles user interactions.
+* **Trigger:** Receives text or audio notes from Telegram.
+* **AI Router:** Analyzes the intent (Is it an expense? A query? Or just a greeting?).
+* **Tool Calling:** The AI autonomously decides which tool to use:
+    * `Calculator`: For math operations.
+    * `Google Sheets API`: To log data.
+    * `Pinecone Vector Store`: To search past records.
+* **Response:** Sends a natural language summary back to the user.
+
+### 2. ⏰ FinFlow_Reminder_Module (The Timekeeper)
+A separate dedicated workflow for managing time-based tasks.
+* **Scheduler:** Runs at specific intervals to check Google Calendar/Sheet events.
+* **Logic:** Filters upcoming payments or debt deadlines.
+* **Alert:** Sends a proactive notification on Telegram before the due date.
+
+![Reminder Workflow](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow_Reminder_Module.png?raw=true)
+
+---
+
+## 📸 Live Demo & Logic Showcase
+
+Here is how the agent handles complex, real-world scenarios:
+
+### ✅ Scenario 1: Mixed Income & Expense (Hinglish)
+I gave it a complex prompt: *"Ravi se 5000 udhar liye (Income), Ravi ko 2000 wapas diye (Expense), Petrol 100 (Expense)."*
+The bot successfully categorized each item and calculated the Net Balance perfectly.
+
+![Logic Demo](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow%20AI%20%20Smart%20Finance%20Agent%2001.png?raw=true)
+
+### ✅ Scenario 2: Contextual Memory & Calculation
+It remembers previous context. When I asked for the total, it didn't just add numbers; it understood the **Net Balance** logic (Income - Expense) and updated it with new information.
+
+![Memory Demo](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow%20AI%20Smart%20Finance%20Agent%2004.png?raw=true)
+
+---
+
+## 🛠️ Tech Stack
+
+* **Orchestration:** [n8n](https://n8n.io/) (Self-hosted)
+* **LLM:** OpenAI GPT-4o Mini (for cost-efficiency & speed)
+* **Database (Structured):** Google Sheets
+* **Database (Vector):** Pinecone (for RAG/Memory)
+* **Interface:** Telegram Bot API
+* **Tools:** Calculator Node, HTTP Requests
+
+---
