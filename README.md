@@ -585,15 +585,13 @@ You can import these project files directly into your n8n instance.
 
 ---
 
-## Project 16 # 🚀 FinFlow AI | Smart Finance Agent
+## Project 16  FinFlow AI | Smart Finance Agent
 
 > **An autonomous financial assistant that understands "Hinglish," remembers context, and never makes a math error.**
 
 ![Architecture](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow_Core_Orchestrator.png?raw=true)
 
 ## 👋 About The Project
-
-Hi, I'm **Ranjit Makvana**.
 
 We all know that standard LLMs (like ChatGPT) are great at talking but **terrible at Math**. If you ask them to calculate a long expense sheet, they often hallucinate the numbers.
 
