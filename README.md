@@ -1,10 +1,10 @@
-# 🤖 n8n AI Automation Portfolio
+#  n8n AI Automation Portfolio
 
 > **AI Agent & Automation Specialist** — Building intelligent, multi-platform automations that solve real business problems. From RAG-powered voice agents to multi-tool AI systems handling 300k+ users, every project here is built end-to-end and production-tested.
 
 ---
 
-## 👨‍💻 About Me
+##  About Me
 
 I specialize in designing and deploying **autonomous AI agents** and **end-to-end automation workflows** using **n8n** as the core orchestration engine. My focus is on building systems that don't just demo well — they handle real-world complexity: stateful conversations, structured business data, multi-language support (Hindi/English/Hinglish), and integrations across messaging platforms, voice APIs, and vector databases.
 
