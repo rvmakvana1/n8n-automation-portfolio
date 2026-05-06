@@ -55,7 +55,7 @@ I specialize in designing and deploying **autonomous AI agents** and **end-to-en
 
 ![Architecture](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow_Core_Orchestrator.png?raw=true)
 
-### 👋 About The Project
+###  About The Project
 
 We all know that standard LLMs (like ChatGPT) are great at talking but **terrible at Math**. If you ask them to calculate a long expense sheet, they often hallucinate the numbers.
 
