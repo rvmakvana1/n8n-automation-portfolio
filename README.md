@@ -293,7 +293,7 @@ The complete automation logic for this migration system can be found here:
 
 ---
 
-## 🍽️ Project 6: AI WhatsApp Restaurant Bot (via Meta API)
+##  Project 6: AI WhatsApp Restaurant Bot (via Meta API)
 
 ### 📝 Project Overview
 This is a fully autonomous AI agent built in n8n that manages a restaurant's complete ordering system **directly through the official Meta WhatsApp API**. This bot acts as a smart food ordering assistant for "MDA Restaurant," handling the entire customer conversation in real-time.
