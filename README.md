@@ -16,7 +16,7 @@ I specialize in designing and deploying **autonomous AI agents** and **end-to-en
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Category | Tools |
 |---|---|
@@ -49,7 +49,7 @@ I specialize in designing and deploying **autonomous AI agents** and **end-to-en
 
 ---
 
-## 🥇 Project 1: FinFlow AI — Smart Finance Agent
+##  Project 1: FinFlow AI — Smart Finance Agent
 
 > **An autonomous financial assistant that understands "Hinglish," remembers context, and never makes a math error.**
 
@@ -106,7 +106,7 @@ It remembers previous context. When I asked for the total, it didn't just add nu
 
 ![Memory Demo](https://github.com/rvmakvana1/n8n-automation-portfolio/blob/main/FinFlow%20AI%20Smart%20Finance%20Agent%2004.png?raw=true)
 
-### 🛠️ Tech Stack
+###  Tech Stack
 
 * **Orchestration:** [n8n](https://n8n.io/) (Self-hosted)
 * **LLM:** OpenAI GPT-4o Mini (for cost-efficiency & speed)
@@ -120,14 +120,14 @@ It remembers previous context. When I asked for the total, it didn't just add nu
 
 ---
 
-## 🥈 Project 2: AI-Powered Instagram DM Lead Qualifier (Manychat + n8n)
+##  Project 2: AI-Powered Instagram DM Lead Qualifier (Manychat + n8n)
 
 ### 📝 Project Overview
 This is a highly advanced, multi-platform conversational AI agent designed to automate the entire lead qualification funnel for a business coach directly through Instagram DMs. This system handles real-time conversations, qualifies new leads based on a specific set of rules, captures their information, and even upsells them to a discovery call—all without any human intervention.
 
 The architecture is a sophisticated blend: **Manychat** handles the Instagram DM connection and initial user interaction, while an **n8n Webhook** sends the user's messages to an **n8n** workflow. This n8n workflow acts as the "brain," using a **DeepSeek AI Agent** (with a detailed system prompt) and **Simple Memory** to manage a stateful, human-like conversation, qualifying the lead before sending the data to Google Sheets and returning the response to Manychat.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The core backend "brain" of the operation, hosting the AI agent and logic.
 * **Manychat:** The frontend integration layer, connecting Instagram DMs to n8n via external requests and managing the user interface.
 * **Instagram:** The user-facing chat platform.
@@ -135,7 +135,7 @@ The architecture is a sophisticated blend: **Manychat** handles the Instagram DM
 * **Google Sheets:** Used as the database to capture qualified leads.
 * **Simple Memory (n8n):** Crucial for maintaining a stateful conversation, allowing the bot to remember previous questions and answers using the Manychat `contactId`.
 
-### ✨ Key Features
+###  Key Features
 * **Real-Time DM Automation:** The agent responds instantly to Instagram DMs triggered by specific keywords (e.g., "Checklist").
 * **Complex Conversation Flow:** The AI follows a detailed conversational script, asks qualifying questions one by one, and waits for responses.
 * **Lead Qualification Logic:** Based on the user's answers, the AI determines if a lead is "qualified" or "disqualified" according to predefined rules.
@@ -168,7 +168,7 @@ An intelligent automation system built with **n8n** that acts as a personal "Sec
 
 This project consists of **two interconnected workflows** working together to handle memories and actions.
 
-### ✨ Key Features
+###  Key Features
 
 * **🗣️ Voice-to-Text Support:** Integrated **OpenAI Whisper** to handle Voice Notes accurately (supports Hinglish/Hindi).
 * **🧠 Long-Term Memory (RAG):** Uses **Pinecone Vector Database** to store and retrieve user notes and context.
@@ -177,7 +177,7 @@ This project consists of **two interconnected workflows** working together to ha
 * **📂 Data Backup:** Automatically logs every transaction/note into **Google Sheets** for safety.
 * **💬 Telegram Interface:** Serves as a user-friendly frontend for all interactions.
 
-### 🛠️ Tech Stack Used
+###  Tech Stack Used
 
 * **Workflow Automation:** [n8n](https://n8n.io/)
 * **AI Model:** OpenAI (GPT-4o / GPT-3.5-turbo) & Whisper
@@ -221,7 +221,7 @@ This project showcases a sophisticated, real-time **AI Calling Agent** capable o
 
 When a user calls the agent, ElevenLabs converts their speech to text and sends it to the n8n Webhook. The n8n workflow then uses a RAG (Retrieval-Augmented Generation) pipeline: it searches a **Pinecone** vector database (populated with custom documents) for relevant information, uses **OpenAI** to generate a natural language response based on that context, and sends the text response back to ElevenLabs via the `Respond to Webhook` node. ElevenLabs converts this text back into speech for the user, enabling a seamless voice conversation powered by custom data.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The core automation engine orchestrating the logic.
 * **Webhook (n8n):** Receives real-time voice transcriptions from ElevenLabs.
 * **ElevenLabs:** The voice AI platform handling Text-to-Speech (TTS), Speech-to-Text (STT), and call management.
@@ -231,7 +231,7 @@ When a user calls the agent, ElevenLabs converts their speech to text and sends 
 * **Simple Memory (n8n):** Essential for maintaining conversation state throughout the phone call using a unique `call_id`.
 * **Respond to Webhook (n8n):** Sends the generated text response back to ElevenLabs.
 
-### ✨ Key Features
+###  Key Features
 * **Real-time Voice Conversation:** Enables natural voice interaction with an AI agent.
 * **Custom Knowledge Base (RAG):** The agent answers questions based on specific documents provided by the user, not just general knowledge.
 * **Direct Webhook Integration:** Demonstrates real-time data exchange between n8n and a voice platform like ElevenLabs.
@@ -256,7 +256,7 @@ The most critical challenge was establishing and maintaining **conversation memo
 
 This project was designed to solve a critical **Data Retention Challenge** for a client with over **300,000 subscribers**.
 
-### 📌 Project Context (The Problem)
+###  Project Context (The Problem)
 The client wanted to migrate their massive audience of **300k+ users** from an existing database to a **New Premium Channel**.
 
 However, simply sharing a direct invite link was not an option because:
@@ -300,7 +300,7 @@ This is a fully autonomous AI agent built in n8n that manages a restaurant's com
 
 A key feature of this agent is its resourcefulness: it uses **Google Sheets as its sole database and knowledge base**. It intelligently switches between different "tools" to check inventory, answer FAQs, and post confirmed orders to different sheets. The agent is powered by the **DeepSeek Chat Model** for natural and intelligent conversation.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The core automation platform.
 * **WhatsApp Trigger (Meta API):** Connects directly to the Meta for Developers App for instant, two-way communication.
 * **DeepSeek Chat Model:** The AI brain for understanding context and deciding which tool to use.
@@ -310,7 +310,7 @@ A key feature of this agent is its resourcefulness: it uses **Google Sheets as i
     * `Post Order` (Tool 3): A node that writes to a sheet to confirm new orders.
 * **Simple Memory:** To maintain a stateful conversation and remember the user's order.
 
-### ✨ Key Features
+###  Key Features
 * **Direct Meta API Integration:** Uses the official `WhatsApp Trigger` node, demonstrating a complex setup with Meta's developer platform.
 * **Google Sheets as a "Database":** The AI agent uses Google Sheets as its live database, proving that powerful AI systems can run on simple, cost-effective tools.
 * **Multi-Tool Capability:** The agent is prompted to intelligently choose between its three different Google Sheet tools based on the user's request (e.g., checking inventory vs. answering a question).
@@ -339,7 +339,7 @@ This project is a powerful, custom-built internal tool that allows a business ma
 
 A manager can type natural language commands (e.g., "Update Fernanda's budget" or "Send Martin an email") into the dashboard chat. The n8n agent receives this via a webhook, understands the command, uses its "tools" to perform the action (like updating the Google Sheet or sending a Gmail), and then confirms the task is complete, all within the chat.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The central automation "brain" that hosts the AI Agent and manages the logic.
 * **Lovable.dev:** Used to create the beautiful, real-time analytics dashboard and chat interface.
 * **Google Sheets:** Acts as the live database, storing all client and project data.
@@ -347,7 +347,7 @@ A manager can type natural language commands (e.g., "Update Fernanda's budget" o
 * **Gmail Node:** Used as a tool by the agent to send emails directly from the chat interface.
 * **Webhook:** The real-time connection between the Lovable chatbot and the n8n agent.
 
-### ✨ Key Features
+###  Key Features
 * **AI-Powered Dashboard:** The agent turns a static dashboard into an interactive "operating system."
 * **Natural Language Commands:** The manager doesn't need to know n8n or Google Sheets; they just need to chat. The agent (with its clear system prompt) does the rest.
 * **Multi-Tool Capability:** The agent can intelligently choose between reading data, updating data, or sending emails, all from one command.
@@ -380,14 +380,14 @@ What makes this build powerful is its "enterprise-grade" architecture:
 1.  **Supabase Vector Store:** It uses Supabase for its RAG pipeline, a powerful open-source database that handles both data storage and vector search.
 2.  **Persistent Postgres Memory:** It uses a dedicated `Postgres Chat Memory` node, allowing the agent to remember conversations permanently and across multiple sessions, a feature crucial for real-world business applications.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The central automation platform.
 * **Supabase:** Used as the primary vector database for both document ingestion and as a retrieval tool for the AI agent.
 * **OpenAI:** Used for generating embeddings (`text-embedding-3-small`) and powering the chat model.
 * **Postgres Chat Memory:** For storing conversation history in an external database, enabling true stateful conversation.
 * **Default Data Loader:** To load, process, and split the source PDF document.
 
-### ✨ Key Features
+###  Key Features
 * **Dual-Purpose Workflow:** A clean, unified workflow that handles both data ingestion (learning the PDF via a manual trigger) and live chat Q&A.
 * **Supabase RAG Pipeline:** The agent retrieves factual information ("rules of golf") directly from the Supabase vector database to provide accurate, fact-based answers.
 * **Scalable Memory:** By using a Postgres database for memory instead of temporary session memory, this agent can handle thousands of users and build long-term context.
@@ -415,7 +415,7 @@ This agent acts as a 24/7 virtual property expert. It answers specific user ques
 
 What makes this project unique is its data ingestion pipeline: it automatically "learns" from **structured Excel (XLS) files** added to Google Drive. It uses a **custom JavaScript node** to properly format each row of data before embedding it, ensuring the AI can understand and retrieve complex property details accurately.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The central automation platform.
 * **Google Drive Trigger:** To automatically detect and ingest new property listing files.
 * **Extract from File:** To read data directly from Excel (XLS) files.
@@ -424,7 +424,7 @@ What makes this project unique is its data ingestion pipeline: it automatically 
 * **OpenAI:** Used for generating embeddings and powering the chat model.
 * **Simple Memory:** To maintain conversational context.
 
-### ✨ Key Features
+###  Key Features
 * **RAG on Structured Data:** Moves beyond basic PDFs to handle structured Excel data, which is how most businesses store their information.
 * **Custom Data Transformation:** Uses **JavaScript** to ensure data is clean and perfectly formatted before AI ingestion, guaranteeing high-quality answers.
 * **High-Accuracy Answers:** The agent provides fact-based answers about properties by retrieving data directly from the Supabase vector store.
@@ -449,13 +449,13 @@ The most interesting challenge was handling *structured data* from an Excel file
 ### 📝 Project Overview
 This project showcases an advanced AI system known as a Retrieval-Augmented Generation (RAG) agent. The system is built in two parts: the first part automatically processes and "learns" from documents uploaded to Google Drive, creating a specialized knowledge base in Pinecone. The second part is a chat agent that uses this custom knowledge base to answer user questions with high accuracy, even in multiple languages. This is a powerful, self-updating system that can be adapted for any company's internal documents.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The core platform for both workflows.
 * **Google Drive:** Used to trigger the learning process.
 * **Pinecone:** The vector database for storing the knowledge.
 * **OpenAI:** Used for creating vector embeddings and generating answers.
 
-### ✨ Key Features & How It Works
+###  Key Features & How It Works
 
 This system is divided into two distinct, automated workflows:
 
@@ -491,14 +491,14 @@ This workflow automates the process of fetching live option chain data for NIFTY
 
 This project goes beyond simple data scraping — it demonstrates **secure dynamic API handling** (managing NSE's session cookies and headers), **custom JavaScript algorithms** (for ATM detection logic), and **intelligent data filtering** that delivers decision-ready data instead of raw dumps.
 
-### 🛠️ Tools Used
+###  Tools Used
 * **n8n:** The core automation platform used to build and run the workflow.
 * **HTTP Request Node:** To call the NSE's background API and fetch live data, handling headers and cookies.
 * **Code Node (JavaScript):** To implement the custom logic for identifying the At-the-Money (ATM) strike price.
 * **Google Sheets:** The database where the final, filtered data is stored.
 * **Schedule Trigger:** To run the workflow autonomously every 3 minutes.
 
-### ✨ Key Features
+###  Key Features
 * **Scheduled Execution:** Runs automatically every 3 minutes during market hours.
 * **Dynamic Data Scraping:** Fetches data from a secure and dynamic website API, handling session cookies and authentication headers.
 * **Intelligent Filtering:** Custom JavaScript algorithm automatically pinpoints the most relevant market data (At-the-Money strike).
